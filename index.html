@@ -106,24 +106,6 @@
     display: flex;
     align-items: center;
   }
-  .hero::before {
-    content: '';
-    position: absolute;
-    top: -100px; right: -100px;
-    width: 400px; height: 400px;
-    background: radial-gradient(circle, var(--magenta) 0%, transparent 70%);
-    opacity: 0.15;
-    border-radius: 50%;
-  }
-  .hero::after {
-    content: '';
-    position: absolute;
-    bottom: -150px; left: -100px;
-    width: 500px; height: 500px;
-    background: radial-gradient(circle, var(--cyan) 0%, transparent 70%);
-    opacity: 0.15;
-    border-radius: 50%;
-  }
   .hero-container {
     max-width: 1400px;
     margin: 0 auto;
@@ -201,47 +183,6 @@
     border: 2px solid var(--dark);
   }
   .btn-secondary:hover { background: var(--dark); color: white; }
-  .hero-image {
-    position: relative;
-  }
-  .hero-image img {
-    width: 100%;
-    border-radius: 30px;
-    box-shadow: 0 30px 60px rgba(0,0,0,0.15);
-    transform: rotate(-2deg);
-    transition: transform 0.5s;
-  }
-  .hero-image:hover img { transform: rotate(0deg) scale(1.02); }
-  .hero-float {
-    position: absolute;
-    background: white;
-    padding: 15px 20px;
-    border-radius: 20px;
-    box-shadow: 0 10px 30px rgba(0,0,0,0.1);
-    display: flex;
-    align-items: center;
-    gap: 12px;
-    animation: float 3s ease-in-out infinite;
-  }
-  .hero-float.top { top: -20px; left: -20px; }
-  .hero-float.bottom { bottom: 30px; right: -20px; animation-delay: 1.5s; }
-  .hero-float .icon {
-    width: 45px; height: 45px;
-    border-radius: 12px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    color: white;
-    font-size: 1.2rem;
-  }
-  .hero-float.top .icon { background: linear-gradient(135deg, var(--cyan), var(--green)); }
-  .hero-float.bottom .icon { background: linear-gradient(135deg, var(--yellow), var(--orange)); }
-  .hero-float strong { display: block; font-size: 0.95rem; }
-  .hero-float small { color: #888; font-size: 0.8rem; }
-  @keyframes float {
-    0%, 100% { transform: translateY(0); }
-    50% { transform: translateY(-15px); }
-  }
 
   section { padding: 100px 5%; }
   .section-header {
@@ -269,492 +210,6 @@
   }
   .section-header p { color: #666; font-size: 1.1rem; }
 
-  .products { background: white; }
-  .products-grid {
-    max-width: 1400px;
-    margin: 0 auto;
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-    gap: 30px;
-  }
-  .product-card {
-    background: white;
-    border-radius: 25px;
-    overflow: hidden;
-    box-shadow: 0 10px 40px rgba(0,0,0,0.08);
-    transition: all 0.4s;
-    border: 2px solid transparent;
-    position: relative;
-  }
-  .product-card:hover {
-    transform: translateY(-10px);
-    box-shadow: 0 20px 50px rgba(0,0,0,0.15);
-  }
-  .product-card:nth-child(1) { border-color: var(--magenta); }
-  .product-card:nth-child(2) { border-color: var(--cyan); }
-  .product-card:nth-child(3) { border-color: var(--orange); }
-  .product-card:nth-child(4) { border-color: var(--purple); }
-  .product-img {
-    height: 220px;
-    overflow: hidden;
-    position: relative;
-  }
-  .product-img img {
-    width: 100%; height: 100%;
-    object-fit: cover;
-    transition: transform 0.5s;
-  }
-  .product-card:hover .product-img img { transform: scale(1.1); }
-  .product-tag {
-    position: absolute;
-    top: 15px; left: 15px;
-    background: white;
-    padding: 6px 14px;
-    border-radius: 20px;
-    font-size: 0.8rem;
-    font-weight: 700;
-    color: var(--dark);
-  }
-  .product-body { padding: 25px; }
-  .product-body h3 {
-    font-size: 1.4rem;
-    margin-bottom: 10px;
-    font-weight: 700;
-  }
-  .product-body p {
-    color: #666;
-    font-size: 0.95rem;
-    margin-bottom: 20px;
-    line-height: 1.6;
-  }
-  .product-features {
-    list-style: none;
-    margin-bottom: 20px;
-  }
-  .product-features li {
-    padding: 6px 0;
-    font-size: 0.9rem;
-    color: #555;
-    display: flex;
-    align-items: center;
-    gap: 10px;
-  }
-  .product-features li i { color: var(--green); }
-  .product-price {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding-top: 15px;
-    border-top: 1px dashed #eee;
-  }
-  .price {
-    font-size: 1.5rem;
-    font-weight: 800;
-    color: var(--magenta);
-  }
-  .price small { font-size: 0.8rem; color: #888; font-weight: 400; }
-  .btn-small {
-    padding: 10px 20px;
-    font-size: 0.9rem;
-  }
-
-  .features {
-    background: linear-gradient(135deg, var(--purple) 0%, var(--magenta) 100%);
-    color: white;
-    position: relative;
-    overflow: hidden;
-  }
-  .features::before {
-    content: '';
-    position: absolute;
-    top: 50%; left: 50%;
-    width: 600px; height: 600px;
-    background: radial-gradient(circle, var(--cyan) 0%, transparent 70%);
-    opacity: 0.2;
-    transform: translate(-50%, -50%);
-  }
-  .features .section-header h2 { color: white; }
-  .features .section-header p { color: rgba(255,255,255,0.85); }
-  .features .section-tag { background: white; color: var(--magenta); }
-  .features-grid {
-    max-width: 1400px;
-    margin: 0 auto;
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-    gap: 30px;
-    position: relative;
-    z-index: 2;
-  }
-  .feature-card {
-    background: rgba(255,255,255,0.1);
-    backdrop-filter: blur(10px);
-    padding: 35px 25px;
-    border-radius: 25px;
-    border: 1px solid rgba(255,255,255,0.2);
-    transition: all 0.3s;
-  }
-  .feature-card:hover {
-    background: rgba(255,255,255,0.2);
-    transform: translateY(-5px);
-  }
-  .feature-icon {
-    width: 70px; height: 70px;
-    border-radius: 20px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 1.8rem;
-    margin-bottom: 20px;
-    color: white;
-  }
-  .feature-card:nth-child(1) .feature-icon { background: linear-gradient(135deg, var(--yellow), var(--orange)); }
-  .feature-card:nth-child(2) .feature-icon { background: linear-gradient(135deg, var(--cyan), var(--green)); }
-  .feature-card:nth-child(3) .feature-icon { background: linear-gradient(135deg, var(--magenta), var(--purple)); }
-  .feature-card:nth-child(4) .feature-icon { background: linear-gradient(135deg, var(--orange), var(--magenta)); }
-  .feature-card h3 { font-size: 1.3rem; margin-bottom: 10px; }
-  .feature-card p { color: rgba(255,255,255,0.85); line-height: 1.6; }
-
-  .gallery { background: var(--light); }
-  .gallery-grid {
-    max-width: 1400px;
-    margin: 0 auto;
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-    gap: 25px;
-  }
-  .gallery-item {
-    border-radius: 20px;
-    overflow: hidden;
-    position: relative;
-    height: 300px;
-    cursor: pointer;
-    box-shadow: 0 10px 30px rgba(0,0,0,0.1);
-  }
-  .gallery-item img {
-    width: 100%; height: 100%;
-    object-fit: cover;
-    transition: transform 0.5s;
-  }
-  .gallery-item:hover img { transform: scale(1.1); }
-  .gallery-overlay {
-    position: absolute;
-    inset: 0;
-    background: linear-gradient(135deg, rgba(255,0,110,0.8), rgba(131,56,236,0.8));
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    color: white;
-    opacity: 0;
-    transition: opacity 0.3s;
-    padding: 20px;
-    text-align: center;
-  }
-  .gallery-item:hover .gallery-overlay { opacity: 1; }
-  .gallery-overlay h3 { font-size: 1.5rem; margin-bottom: 10px; }
-  .gallery-overlay p { font-size: 0.95rem; }
-
-  .process { background: white; }
-  .process-steps {
-    max-width: 1200px;
-    margin: 0 auto;
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-    gap: 30px;
-    position: relative;
-  }
-  .step {
-    text-align: center;
-    padding: 30px 20px;
-    position: relative;
-  }
-  .step-number {
-    width: 80px; height: 80px;
-    border-radius: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 2rem;
-    font-weight: 800;
-    color: white;
-    margin: 0 auto 20px;
-    position: relative;
-    z-index: 2;
-  }
-  .step:nth-child(1) .step-number { background: linear-gradient(135deg, var(--magenta), var(--orange)); }
-  .step:nth-child(2) .step-number { background: linear-gradient(135deg, var(--cyan), var(--green)); }
-  .step:nth-child(3) .step-number { background: linear-gradient(135deg, var(--yellow), var(--orange)); }
-  .step:nth-child(4) .step-number { background: linear-gradient(135deg, var(--purple), var(--magenta)); }
-  .step h3 { font-size: 1.3rem; margin-bottom: 10px; }
-  .step p { color: #666; line-height: 1.6; }
-
-  .testimonials {
-    background: linear-gradient(135deg, #fff5f8 0%, #e8f4ff 100%);
-  }
-  .testimonials-grid {
-    max-width: 1400px;
-    margin: 0 auto;
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-    gap: 30px;
-  }
-  .testimonial {
-    background: white;
-    padding: 35px;
-    border-radius: 25px;
-    box-shadow: 0 10px 30px rgba(0,0,0,0.05);
-    position: relative;
-    transition: transform 0.3s;
-  }
-  .testimonial:hover { transform: translateY(-5px); }
-  .testimonial::before {
-    content: '"';
-    position: absolute;
-    top: -20px; left: 30px;
-    font-size: 6rem;
-    color: var(--magenta);
-    opacity: 0.3;
-    font-family: serif;
-    line-height: 1;
-  }
-  .testimonial-text {
-    color: #555;
-    line-height: 1.7;
-    margin-bottom: 20px;
-    font-style: italic;
-  }
-  .testimonial-author {
-    display: flex;
-    align-items: center;
-    gap: 15px;
-  }
-  .author-avatar {
-    width: 55px; height: 55px;
-    border-radius: 50%;
-    background: linear-gradient(135deg, var(--magenta), var(--purple));
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    color: white;
-    font-weight: 700;
-    font-size: 1.2rem;
-  }
-  .author-info strong { display: block; color: var(--dark); }
-  .author-info small { color: #888; }
-  .stars { color: var(--yellow); margin-bottom: 15px; }
-
-  .upload-section {
-    background: linear-gradient(135deg, #fff9e0 0%, #e8f4ff 100%);
-  }
-  .upload-container {
-    max-width: 1000px;
-    margin: 0 auto;
-  }
-  .upload-box {
-    background: white;
-    padding: 50px;
-    border-radius: 30px;
-    box-shadow: 0 20px 50px rgba(0,0,0,0.1);
-    margin-bottom: 40px;
-  }
-  .upload-area {
-    border: 3px dashed var(--cyan);
-    border-radius: 20px;
-    padding: 60px 30px;
-    text-align: center;
-    background: linear-gradient(135deg, rgba(0,187,249,0.05), rgba(131,56,236,0.05));
-    cursor: pointer;
-    transition: all 0.3s;
-    margin-bottom: 30px;
-  }
-  .upload-area:hover {
-    border-color: var(--magenta);
-    background: linear-gradient(135deg, rgba(255,0,110,0.05), rgba(251,86,7,0.05));
-    transform: scale(1.02);
-  }
-  .upload-area.dragover {
-    border-color: var(--green);
-    background: linear-gradient(135deg, rgba(6,214,160,0.1), rgba(0,187,249,0.1));
-  }
-  .upload-icon {
-    width: 100px; height: 100px;
-    background: linear-gradient(135deg, var(--cyan), var(--purple));
-    border-radius: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    margin: 0 auto 20px;
-    color: white;
-    font-size: 2.5rem;
-  }
-  .upload-area h3 {
-    font-size: 1.5rem;
-    margin-bottom: 10px;
-    color: var(--dark);
-  }
-  .upload-area p {
-    color: #666;
-    margin-bottom: 15px;
-  }
-  .upload-btn {
-    background: linear-gradient(135deg, var(--magenta), var(--orange));
-    color: white;
-    padding: 12px 30px;
-    border-radius: 30px;
-    border: none;
-    font-weight: 700;
-    cursor: pointer;
-    font-size: 1rem;
-    font-family: inherit;
-    transition: all 0.3s;
-  }
-  .upload-btn:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 10px 25px rgba(255,0,110,0.4);
-  }
-  .upload-form {
-    display: grid;
-    gap: 20px;
-  }
-  .form-row {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 20px;
-  }
-  .form-group {
-    display: flex;
-    flex-direction: column;
-  }
-  .form-group label {
-    font-weight: 600;
-    margin-bottom: 8px;
-    color: var(--dark);
-  }
-  .form-group input,
-  .form-group select,
-  .form-group textarea {
-    padding: 12px 16px;
-    border: 2px solid #e0e0e0;
-    border-radius: 12px;
-    font-family: inherit;
-    font-size: 1rem;
-    transition: all 0.3s;
-  }
-  .form-group input:focus,
-  .form-group select:focus,
-  .form-group textarea:focus {
-    outline: none;
-    border-color: var(--magenta);
-    box-shadow: 0 0 0 3px rgba(255,0,110,0.1);
-  }
-  .preview-container {
-    display: none;
-    margin-top: 20px;
-  }
-  .preview-container.active {
-    display: block;
-  }
-  .preview-image {
-    max-width: 100%;
-    max-height: 400px;
-    border-radius: 15px;
-    box-shadow: 0 10px 30px rgba(0,0,0,0.1);
-    margin-bottom: 20px;
-  }
-  .templates-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-    gap: 25px;
-    margin-top: 40px;
-  }
-  .template-card {
-    background: white;
-    border-radius: 20px;
-    overflow: hidden;
-    box-shadow: 0 10px 30px rgba(0,0,0,0.08);
-    transition: all 0.3s;
-    position: relative;
-  }
-  .template-card:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 15px 40px rgba(0,0,0,0.15);
-  }
-  .template-image {
-    width: 100%;
-    height: 300px;
-    object-fit: cover;
-  }
-  .template-info {
-    padding: 20px;
-  }
-  .template-info h4 {
-    font-size: 1.2rem;
-    margin-bottom: 8px;
-    color: var(--dark);
-  }
-  .template-info p {
-    color: #666;
-    font-size: 0.9rem;
-    margin-bottom: 10px;
-  }
-  .template-meta {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding-top: 10px;
-    border-top: 1px solid #eee;
-    font-size: 0.85rem;
-    color: #888;
-  }
-  .template-category {
-    background: linear-gradient(135deg, var(--magenta), var(--orange));
-    color: white;
-    padding: 4px 12px;
-    border-radius: 15px;
-    font-size: 0.75rem;
-    font-weight: 600;
-  }
-  .delete-btn {
-    position: absolute;
-    top: 10px;
-    right: 10px;
-    width: 35px;
-    height: 35px;
-    background: rgba(255,0,110,0.9);
-    color: white;
-    border: none;
-    border-radius: 50%;
-    cursor: pointer;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    opacity: 0;
-    transition: all 0.3s;
-  }
-  .template-card:hover .delete-btn {
-    opacity: 1;
-  }
-  .delete-btn:hover {
-    background: var(--magenta);
-    transform: scale(1.1);
-  }
-  .empty-state {
-    text-align: center;
-    padding: 60px 20px;
-    color: #888;
-  }
-  .empty-state i {
-    font-size: 4rem;
-    margin-bottom: 20px;
-    color: #ddd;
-  }
-  .empty-state h3 {
-    font-size: 1.5rem;
-    margin-bottom: 10px;
-    color: #666;
-  }
-
-  /* Catálogo de Plantillas - 64 Modelos */
   .catalog-section {
     background: linear-gradient(135deg, #f0f9ff 0%, #fff5f8 100%);
     padding: 100px 5%;
@@ -809,19 +264,61 @@
   }
   .catalog-image-container {
     position: relative;
-    height: 400px;
+    height: 420px;
     overflow: hidden;
     background: #f8f9fa;
+    display: flex;
+    align-items: center;
+    justify-content: center;
   }
   .catalog-image {
     width: 100%;
     height: 100%;
-    object-fit: contain;
-    background: white;
+    object-fit: cover;
     transition: transform 0.5s;
   }
   .catalog-card:hover .catalog-image {
     transform: scale(1.05);
+  }
+  .catalog-placeholder {
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(135deg, #fff5f8, #e8f4ff);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+    text-align: center;
+    position: absolute;
+    top: 0;
+    left: 0;
+  }
+  .catalog-placeholder .placeholder-number {
+    font-size: 5rem;
+    font-weight: 900;
+    background: linear-gradient(135deg, var(--magenta), var(--orange));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    line-height: 1;
+    margin-bottom: 15px;
+  }
+  .catalog-placeholder .placeholder-title {
+    font-size: 1.1rem;
+    font-weight: 700;
+    color: var(--dark);
+    margin-bottom: 8px;
+  }
+  .catalog-placeholder .placeholder-prof {
+    font-size: 0.95rem;
+    color: var(--magenta);
+    font-weight: 600;
+    margin-bottom: 15px;
+  }
+  .catalog-placeholder .placeholder-info {
+    font-size: 0.8rem;
+    color: #666;
+    line-height: 1.6;
   }
   .catalog-number {
     position: absolute;
@@ -829,14 +326,14 @@
     left: 15px;
     background: linear-gradient(135deg, var(--magenta), var(--orange));
     color: white;
-    width: 45px;
-    height: 45px;
+    width: 50px;
+    height: 50px;
     border-radius: 50%;
     display: flex;
     align-items: center;
     justify-content: center;
     font-weight: 800;
-    font-size: 1.1rem;
+    font-size: 1.2rem;
     box-shadow: 0 4px 15px rgba(255,0,110,0.4);
     z-index: 2;
   }
@@ -981,7 +478,6 @@
 
   .contact {
     background: white;
-    position: relative;
   }
   .contact-container {
     max-width: 1200px;
@@ -1030,119 +526,16 @@
   }
   .contact-list strong { display: block; margin-bottom: 3px; }
   .contact-list span { color: #666; font-size: 0.95rem; }
-  .contact-form {
-    background: linear-gradient(135deg, var(--magenta), var(--purple));
-    padding: 40px;
-    border-radius: 30px;
-    color: white;
-    box-shadow: 0 20px 50px rgba(255,0,110,0.3);
-  }
-  .contact-form h3 {
-    font-size: 1.6rem;
-    margin-bottom: 25px;
-  }
-  .contact-form .form-group { margin-bottom: 20px; }
-  .contact-form .form-group label {
-    display: block;
-    margin-bottom: 8px;
-    font-weight: 600;
-    font-size: 0.9rem;
-  }
-  .contact-form .form-group input,
-  .contact-form .form-group select,
-  .contact-form .form-group textarea {
-    width: 100%;
-    padding: 14px 18px;
-    border: none;
-    border-radius: 12px;
-    background: rgba(255,255,255,0.15);
-    color: white;
-    font-family: inherit;
-    font-size: 1rem;
-    transition: all 0.3s;
-  }
-  .contact-form .form-group input::placeholder,
-  .contact-form .form-group textarea::placeholder { color: rgba(255,255,255,0.7); }
-  .contact-form .form-group input:focus,
-  .contact-form .form-group select:focus,
-  .contact-form .form-group textarea:focus {
-    outline: none;
-    background: rgba(255,255,255,0.25);
-  }
-  .contact-form .form-group select option { color: var(--dark); }
-  .btn-submit {
-    width: 100%;
-    background: white;
-    color: var(--magenta);
-    padding: 16px;
-    border-radius: 12px;
-    font-weight: 700;
-    font-size: 1.05rem;
-    border: none;
-    cursor: pointer;
-    transition: all 0.3s;
-    font-family: inherit;
-  }
-  .btn-submit:hover { transform: translateY(-2px); box-shadow: 0 10px 25px rgba(0,0,0,0.2); }
 
   footer {
     background: var(--dark);
     color: white;
-    padding: 60px 5% 30px;
+    padding: 40px 5% 20px;
+    text-align: center;
   }
-  .footer-container {
-    max-width: 1400px;
-    margin: 0 auto;
-    display: grid;
-    grid-template-columns: 2fr 1fr 1fr 1fr;
-    gap: 40px;
-    margin-bottom: 40px;
-  }
-  .footer-brand .logo { color: white; margin-bottom: 15px; }
-  .footer-brand .logo-text { -webkit-text-fill-color: white; }
-  .footer-brand p { color: #aaa; line-height: 1.7; margin-bottom: 20px; }
-  .social-links {
-    display: flex;
-    gap: 12px;
-  }
-  .social-links a {
-    width: 40px; height: 40px;
-    border-radius: 12px;
-    background: rgba(255,255,255,0.1);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    color: white;
-    text-decoration: none;
-    transition: all 0.3s;
-  }
-  .social-links a:hover { background: var(--magenta); transform: translateY(-3px); }
-  .footer-col h4 {
-    margin-bottom: 20px;
-    font-size: 1.1rem;
-    position: relative;
-    padding-bottom: 10px;
-  }
-  .footer-col h4::after {
-    content: '';
-    position: absolute;
-    bottom: 0; left: 0;
-    width: 40px; height: 3px;
-    background: linear-gradient(90deg, var(--magenta), var(--orange));
-    border-radius: 3px;
-  }
-  .footer-col ul { list-style: none; }
-  .footer-col li { margin-bottom: 10px; }
-  .footer-col a {
-    color: #aaa;
-    text-decoration: none;
-    transition: color 0.3s;
-  }
-  .footer-col a:hover { color: var(--magenta); }
   .footer-bottom {
     border-top: 1px solid rgba(255,255,255,0.1);
     padding-top: 25px;
-    text-align: center;
     color: #888;
     font-size: 0.9rem;
   }
@@ -1168,12 +561,46 @@
     50% { box-shadow: 0 10px 40px rgba(37,211,102,0.7); }
   }
 
+  .modal {
+    display: none;
+    position: fixed;
+    inset: 0;
+    background: rgba(0,0,0,0.9);
+    z-index: 2000;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+  }
+  .modal.active {
+    display: flex;
+  }
+  .modal img {
+    max-width: 90%;
+    max-height: 90vh;
+    border-radius: 15px;
+    box-shadow: 0 20px 60px rgba(0,0,0,0.5);
+  }
+  .modal-close {
+    position: absolute;
+    top: 20px;
+    right: 30px;
+    color: white;
+    font-size: 2rem;
+    cursor: pointer;
+    background: rgba(255,0,110,0.8);
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: none;
+  }
+
   @media (max-width: 968px) {
     .hero-container, .contact-container { grid-template-columns: 1fr; }
     .hero-content h1 { font-size: 2.5rem; }
     .section-header h2 { font-size: 2rem; }
-    .footer-container { grid-template-columns: 1fr 1fr; }
-    .form-row { grid-template-columns: 1fr; }
     nav ul { display: none; }
     .menu-toggle { display: block; }
     nav ul.active {
@@ -1185,16 +612,10 @@
       padding: 20px;
       box-shadow: 0 10px 30px rgba(0,0,0,0.1);
     }
-    .catalog-grid {
-      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-    }
   }
   @media (max-width: 600px) {
-    .footer-container { grid-template-columns: 1fr; }
     .hero-content h1 { font-size: 2rem; }
     section { padding: 60px 5%; }
-    .upload-box { padding: 30px 20px; }
-    .upload-area { padding: 40px 20px; }
     .catalog-grid {
       grid-template-columns: 1fr;
     }
@@ -1212,11 +633,7 @@
     <nav>
       <ul id="navMenu">
         <li><a href="#inicio">Inicio</a></li>
-        <li><a href="#productos">Productos</a></li>
         <li><a href="#catalogo">Catálogo</a></li>
-        <li><a href="#galeria">Galería</a></li>
-        <li><a href="#plantillas">Plantillas</a></li>
-        <li><a href="#proceso">Proceso</a></li>
         <li><a href="#contacto" class="nav-cta"><i class="fab fa-whatsapp"></i> Cotizar</a></li>
       </ul>
     </nav>
@@ -1241,120 +658,9 @@
         <a href="#catalogo" class="btn btn-secondary">Ver Catálogo</a>
       </div>
     </div>
-    <div class="hero-image">
-      <img src="https://image.qwenlm.ai/public_source/e69c3239-2d6a-4369-817e-602455004226/1175692b8-a9c5-4fc0-a00c-99bd47f1bbad.png" alt="Talonarios médicos">
-      <div class="hero-float top">
-        <div class="icon"><i class="fas fa-truck-fast"></i></div>
-        <div>
-          <strong>Entrega Rápida</strong>
-          <small>En todo Puerto Montt</small>
-        </div>
-      </div>
-      <div class="hero-float bottom">
-        <div class="icon"><i class="fas fa-star"></i></div>
-        <div>
-          <strong>+500 Clientes</strong>
-          <small>Profesionales de la salud</small>
-        </div>
-      </div>
-    </div>
   </div>
 </section>
 
-<section class="products" id="productos">
-  <div class="section-header">
-    <div class="section-tag">Nuestros Productos</div>
-    <h2>Talonarios Médicos Personalizados</h2>
-    <p>Ofrecemos una amplia gama de talonarios para profesionales de la salud, con diseño personalizado y la más alta calidad de impresión.</p>
-  </div>
-  <div class="products-grid">
-    <div class="product-card">
-      <div class="product-img">
-        <img src="https://image.qwenlm.ai/public_source/e69c3239-2d6a-4369-817e-602455004226/1175692b8-a9c5-4fc0-a00c-99bd47f1bbad.png" alt="Recetas médicas">
-        <div class="product-tag">Más vendido</div>
-      </div>
-      <div class="product-body">
-        <h3>Talonarios de Recetas</h3>
-        <p>Recetarios médicos personalizados con todos los campos necesarios para prescripciones profesionales.</p>
-        <ul class="product-features">
-          <li><i class="fas fa-check"></i> Datos del profesional</li>
-          <li><i class="fas fa-check"></i> Campos de paciente</li>
-          <li><i class="fas fa-check"></i> Espacio Rp. amplio</li>
-          <li><i class="fas fa-check"></i> Firma y fecha</li>
-        </ul>
-        <div class="product-price">
-          <div class="price">Desde $15.000 <small>/ talonario</small></div>
-          <a href="https://wa.me/56978472489?text=Hola,%20quiero%20cotizar%20talonarios%20de%20recetas" class="btn btn-primary btn-small">Cotizar</a>
-        </div>
-      </div>
-    </div>
-
-    <div class="product-card">
-      <div class="product-img">
-        <img src="https://image.qwenlm.ai/public_source/e69c3239-2d6a-4369-817e-602455004226/1c6617d32-7db7-497b-88b3-77c2a03de029.png" alt="Órdenes de exámenes">
-        <div class="product-tag">Popular</div>
-      </div>
-      <div class="product-body">
-        <h3>Órdenes de Exámenes</h3>
-        <p>Talonarios para solicitar exámenes de laboratorio con checkboxes y campos específicos.</p>
-        <ul class="product-features">
-          <li><i class="fas fa-check"></i> Checkboxes de exámenes</li>
-          <li><i class="fas fa-check"></i> Datos del paciente</li>
-          <li><i class="fas fa-check"></i> Observaciones</li>
-          <li><i class="fas fa-check"></i> Diseño personalizado</li>
-        </ul>
-        <div class="product-price">
-          <div class="price">Desde $18.000 <small>/ talonario</small></div>
-          <a href="https://wa.me/56978472489?text=Hola,%20quiero%20cotizar%20órdenes%20de%20exámenes" class="btn btn-primary btn-small">Cotizar</a>
-        </div>
-      </div>
-    </div>
-
-    <div class="product-card">
-      <div class="product-img">
-        <img src="https://image.qwenlm.ai/public_source/e69c3239-2d6a-4369-817e-602455004226/11f6214b9-fcb8-435a-aaba-aef4d85292b1.png" alt="Certificados médicos">
-        <div class="product-tag">Nuevo</div>
-      </div>
-      <div class="product-body">
-        <h3>Certificados Médicos</h3>
-        <p>Certificados de salud, reposo médico y otros documentos oficiales con formato profesional.</p>
-        <ul class="product-features">
-          <li><i class="fas fa-check"></i> Formato oficial</li>
-          <li><i class="fas fa-check"></i> Papel de calidad</li>
-          <li><i class="fas fa-check"></i> Numeración correlativa</li>
-          <li><i class="fas fa-check"></i> Logo personalizado</li>
-        </ul>
-        <div class="product-price">
-          <div class="price">Desde $20.000 <small>/ talonario</small></div>
-          <a href="https://wa.me/56978472489?text=Hola,%20quiero%20cotizar%20certificados%20médicos" class="btn btn-primary btn-small">Cotizar</a>
-        </div>
-      </div>
-    </div>
-
-    <div class="product-card">
-      <div class="product-img">
-        <img src="https://image.qwenlm.ai/public_source/e69c3239-2d6a-4369-817e-602455004226/162fe0af6-e44a-464a-809f-2d870053bfe0.png" alt="Impresión de calidad">
-        <div class="product-tag">Premium</div>
-      </div>
-      <div class="product-body">
-        <h3>Diseño a Medida</h3>
-        <p>Creamos el diseño exacto que necesitas para tu consulta, con tu logo, colores y datos profesionales.</p>
-        <ul class="product-features">
-          <li><i class="fas fa-check"></i> Diseño personalizado</li>
-          <li><i class="fas fa-check"></i> Logo incluido</li>
-          <li><i class="fas fa-check"></i> Colores corporativos</li>
-          <li><i class="fas fa-check"></i> Asesoría gratuita</li>
-        </ul>
-        <div class="product-price">
-          <div class="price">Cotizar <small>personalizado</small></div>
-          <a href="https://wa.me/56978472489?text=Hola,%20quiero%20un%20diseño%20a%20medida" class="btn btn-primary btn-small">Cotizar</a>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- Catálogo de 64 Plantillas -->
 <section class="catalog-section" id="catalogo">
   <div class="catalog-container">
     <div class="section-header">
@@ -1369,24 +675,24 @@
         <div class="stat-label">Modelos Disponibles</div>
       </div>
       <div class="stat-card">
-        <div class="stat-number">12</div>
-        <div class="stat-label">Diseños Base</div>
-      </div>
-      <div class="stat-card">
-        <div class="stat-number">8</div>
-        <div class="stat-label">Profesionales</div>
-      </div>
-      <div class="stat-card">
         <div class="stat-number">100%</div>
         <div class="stat-label">Personalizable</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-number">24h</div>
+        <div class="stat-label">Entrega Rápida</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-number">+500</div>
+        <div class="stat-label">Clientes Felices</div>
       </div>
     </div>
 
     <div class="catalog-filters">
       <button class="filter-btn active" data-filter="all">Todos (64)</button>
-      <button class="filter-btn" data-filter="receta">Recetas (32)</button>
-      <button class="filter-btn" data-filter="examen">Exámenes (16)</button>
-      <button class="filter-btn" data-filter="certificado">Certificados (16)</button>
+      <button class="filter-btn" data-filter="receta">Recetas</button>
+      <button class="filter-btn" data-filter="examen">Exámenes</button>
+      <button class="filter-btn" data-filter="certificado">Certificados</button>
     </div>
 
     <div class="catalog-grid" id="catalogGrid"></div>
@@ -1399,227 +705,12 @@
   </div>
 </section>
 
-<section class="features">
-  <div class="section-header">
-    <div class="section-tag">¿Por qué elegirnos?</div>
-    <h2>Ventajas de Trabajar con Nosotros</h2>
-    <p>Más de 10 años de experiencia en impresión de material médico nos respaldan.</p>
-  </div>
-  <div class="features-grid">
-    <div class="feature-card">
-      <div class="feature-icon"><i class="fas fa-bolt"></i></div>
-      <h3>Entrega Rápida</h3>
-      <p>Producimos y entregamos tu pedido en el menor tiempo posible, con opción de despacho a todo Chile.</p>
-    </div>
-    <div class="feature-card">
-      <div class="feature-icon"><i class="fas fa-palette"></i></div>
-      <h3>Diseño Personalizado</h3>
-      <p>Creamos el diseño exacto que necesitas, con tu logo, colores y datos profesionales.</p>
-    </div>
-    <div class="feature-card">
-      <div class="feature-icon"><i class="fas fa-medal"></i></div>
-      <h3>Calidad Garantizada</h3>
-      <p>Usamos papel de alta calidad e impresión profesional para un resultado impecable.</p>
-    </div>
-    <div class="feature-card">
-      <div class="feature-icon"><i class="fas fa-hand-holding-dollar"></i></div>
-      <h3>Precios Competitivos</h3>
-      <p>Ofrecemos los mejores precios del mercado con descuentos por volumen para profesionales.</p>
-    </div>
-  </div>
-</section>
-
-<section class="gallery" id="galeria">
-  <div class="section-header">
-    <div class="section-tag">Galería</div>
-    <h2>Nuestros Trabajos</h2>
-    <p>Conoce algunos de los talonarios que hemos fabricado para profesionales de la salud.</p>
-  </div>
-  <div class="gallery-grid">
-    <div class="gallery-item">
-      <img src="https://image.qwenlm.ai/public_source/e69c3239-2d6a-4369-817e-602455004226/1175692b8-a9c5-4fc0-a00c-99bd47f1bbad.png" alt="Talonario recetas">
-      <div class="gallery-overlay">
-        <h3>Recetas Médicas</h3>
-        <p>Talonario personalizado para matronas y médicos</p>
-      </div>
-    </div>
-    <div class="gallery-item">
-      <img src="https://image.qwenlm.ai/public_source/e69c3239-2d6a-4369-817e-602455004226/1c6617d32-7db7-497b-88b3-77c2a03de029.png" alt="Órdenes de exámenes">
-      <div class="gallery-overlay">
-        <h3>Órdenes de Exámenes</h3>
-        <p>Formato con checkboxes para laboratorio</p>
-      </div>
-    </div>
-    <div class="gallery-item">
-      <img src="https://image.qwenlm.ai/public_source/e69c3239-2d6a-4369-817e-602455004226/11f6214b9-fcb8-435a-aaba-aef4d85292b1.png" alt="Certificados">
-      <div class="gallery-overlay">
-        <h3>Certificados Médicos</h3>
-        <p>Documentos oficiales con formato profesional</p>
-      </div>
-    </div>
-    <div class="gallery-item">
-      <img src="https://image.qwenlm.ai/public_source/e69c3239-2d6a-4369-817e-602455004226/162fe0af6-e44a-464a-809f-2d870053bfe0.png" alt="Impresión">
-      <div class="gallery-overlay">
-        <h3>Impresión Profesional</h3>
-        <p>Tecnología de última generación</p>
-      </div>
-    </div>
-  </div>
-</section>
-
-<section class="upload-section" id="plantillas">
-  <div class="upload-container">
-    <div class="section-header">
-      <div class="section-tag">Gestión de Plantillas</div>
-      <h2>Sube tus Plantillas de Recetas</h2>
-      <p>Administra las plantillas de recetas médicas para tener un registro visual de todos los diseños.</p>
-    </div>
-
-    <div class="upload-box">
-      <div class="upload-area" id="uploadArea">
-        <div class="upload-icon">
-          <i class="fas fa-cloud-arrow-up"></i>
-        </div>
-        <h3>Arrastra tu imagen aquí</h3>
-        <p>o haz clic para seleccionar un archivo</p>
-        <button class="upload-btn" onclick="document.getElementById('fileInput').click()">
-          <i class="fas fa-image"></i> Seleccionar Imagen
-        </button>
-        <input type="file" id="fileInput" accept="image/*" style="display: none;">
-      </div>
-
-      <div class="preview-container" id="previewContainer">
-        <img id="previewImage" class="preview-image" alt="Vista previa">
-      </div>
-
-      <form class="upload-form" id="uploadForm" style="display: none;">
-        <div class="form-row">
-          <div class="form-group">
-            <label>Nombre de la Plantilla *</label>
-            <input type="text" id="templateName" placeholder="Ej: Receta Matrona Marcela" required>
-          </div>
-          <div class="form-group">
-            <label>Categoría *</label>
-            <select id="templateCategory" required>
-              <option value="">Selecciona una categoría</option>
-              <option value="receta">Receta Médica</option>
-              <option value="examen">Orden de Exámenes</option>
-              <option value="certificado">Certificado Médico</option>
-              <option value="otro">Otro</option>
-            </select>
-          </div>
-        </div>
-        <div class="form-group">
-          <label>Profesional / Cliente</label>
-          <input type="text" id="templateClient" placeholder="Nombre del profesional o cliente">
-        </div>
-        <div class="form-group">
-          <label>Descripción</label>
-          <textarea id="templateDescription" rows="3" placeholder="Descripción o notas adicionales..."></textarea>
-        </div>
-        <button type="submit" class="btn btn-primary" style="width: 100%;">
-          <i class="fas fa-save"></i> Guardar Plantilla
-        </button>
-      </form>
-    </div>
-
-    <div id="templatesContainer">
-      <h3 style="font-size: 1.8rem; margin-bottom: 20px; text-align: center;">Plantillas Guardadas</h3>
-      <div id="templatesGrid" class="templates-grid"></div>
-      <div id="emptyState" class="empty-state" style="display: none;">
-        <i class="fas fa-folder-open"></i>
-        <h3>No hay plantillas guardadas</h3>
-        <p>Comienza subiendo tu primera plantilla de receta médica</p>
-      </div>
-    </div>
-  </div>
-</section>
-
-<section class="process" id="proceso">
-  <div class="section-header">
-    <div class="section-tag">Cómo Funciona</div>
-    <h2>Proceso Simple y Rápido</h2>
-    <p>En 4 sencillos pasos tendrás tus talonarios médicos listos para usar.</p>
-  </div>
-  <div class="process-steps">
-    <div class="step">
-      <div class="step-number">1</div>
-      <h3>Contáctanos</h3>
-      <p>Escríbenos por WhatsApp o completa el formulario con tus datos y necesidades.</p>
-    </div>
-    <div class="step">
-      <div class="step-number">2</div>
-      <h3>Diseño</h3>
-      <p>Creamos el diseño de tu talonario con tus datos profesionales y lo enviamos para tu aprobación.</p>
-    </div>
-    <div class="step">
-      <div class="step-number">3</div>
-      <h3>Impresión</h3>
-      <p>Una vez aprobado el diseño, procedemos a la impresión con los más altos estándares de calidad.</p>
-    </div>
-    <div class="step">
-      <div class="step-number">4</div>
-      <h3>Entrega</h3>
-      <p>Recoge tu pedido en nuestro local o te lo enviamos a tu consulta en Puerto Montt.</p>
-    </div>
-  </div>
-</section>
-
-<section class="testimonials">
-  <div class="section-header">
-    <div class="section-tag">Testimonios</div>
-    <h2>Lo que Dicen Nuestros Clientes</h2>
-    <p>Profesionales de la salud que confían en nosotros.</p>
-  </div>
-  <div class="testimonials-grid">
-    <div class="testimonial">
-      <div class="stars">
-        <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
-      </div>
-      <p class="testimonial-text">Excelente calidad en los talonarios de recetas. El diseño quedó perfecto con mis datos y el tiempo de entrega fue muy rápido. Totalmente recomendados.</p>
-      <div class="testimonial-author">
-        <div class="author-avatar">MA</div>
-        <div class="author-info">
-          <strong>Marcela Andrade</strong>
-          <small>Matrona - Puerto Montt</small>
-        </div>
-      </div>
-    </div>
-    <div class="testimonial">
-      <div class="stars">
-        <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
-      </div>
-      <p class="testimonial-text">Llevo 3 años comprando mis talonarios aquí. La atención es personalizada y siempre cumplen con los plazos. Los mejores precios de la región.</p>
-      <div class="testimonial-author">
-        <div class="author-avatar">JG</div>
-        <div class="author-info">
-          <strong>Javiera García</strong>
-          <small>Matrona - Puerto Montt</small>
-        </div>
-      </div>
-    </div>
-    <div class="testimonial">
-      <div class="stars">
-        <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
-      </div>
-      <p class="testimonial-text">Muy profesionales. Me hicieron un diseño a medida para mis órdenes de exámenes y quedó impecable. El papel es de muy buena calidad.</p>
-      <div class="testimonial-author">
-        <div class="author-avatar">CR</div>
-        <div class="author-info">
-          <strong>Carlos Ramírez</strong>
-          <small>Médico General</small>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-
 <section class="contact" id="contacto">
   <div class="contact-container">
     <div class="contact-info">
       <div class="section-tag">Contáctanos</div>
       <h2>¿Listo para <span>ordenar</span> tus talonarios?</h2>
-      <p>Contáctanos por WhatsApp o completa el formulario y te responderemos a la brevedad con tu cotización personalizada.</p>
+      <p>Contáctanos por WhatsApp y te responderemos a la brevedad con tu cotización personalizada.</p>
       <ul class="contact-list">
         <li>
           <i class="fas fa-location-dot"></i>
@@ -1645,84 +736,12 @@
       </ul>
       <a href="https://wa.me/56978472489" class="btn btn-primary"><i class="fab fa-whatsapp"></i> Escríbenos por WhatsApp</a>
     </div>
-    <form class="contact-form" onsubmit="enviarWhatsApp(event)">
-      <h3>Solicita tu Cotización</h3>
-      <div class="form-group">
-        <label>Nombre Completo</label>
-        <input type="text" id="nombre" placeholder="Tu nombre" required>
-      </div>
-      <div class="form-group">
-        <label>Teléfono</label>
-        <input type="tel" id="telefono" placeholder="+56 9 ..." required>
-      </div>
-      <div class="form-group">
-        <label>Tipo de Talonario</label>
-        <select id="tipo" required>
-          <option value="">Selecciona una opción</option>
-          <option>Talonario de Recetas</option>
-          <option>Órdenes de Exámenes</option>
-          <option>Certificados Médicos</option>
-          <option>Diseño a Medida</option>
-        </select>
-      </div>
-      <div class="form-group">
-        <label>Cantidad</label>
-        <input type="number" id="cantidad" placeholder="Cantidad de talonarios" min="1" required>
-      </div>
-      <div class="form-group">
-        <label>Mensaje (opcional)</label>
-        <textarea id="mensaje" rows="3" placeholder="Detalles adicionales..."></textarea>
-      </div>
-      <button type="submit" class="btn-submit"><i class="fab fa-whatsapp"></i> Enviar por WhatsApp</button>
-    </form>
   </div>
 </section>
 
 <footer>
-  <div class="footer-container">
-    <div class="footer-brand">
-      <div class="logo">
-        <div class="logo-icon"><i class="fas fa-print"></i></div>
-        <div class="logo-text">Imprenta Central</div>
-      </div>
-      <p>Especialistas en la fabricación de talonarios médicos personalizados para profesionales de la salud en Puerto Montt y toda la región.</p>
-      <div class="social-links">
-        <a href="https://wa.me/56978472489"><i class="fab fa-whatsapp"></i></a>
-        <a href="#"><i class="fab fa-instagram"></i></a>
-        <a href="#"><i class="fab fa-facebook-f"></i></a>
-      </div>
-    </div>
-    <div class="footer-col">
-      <h4>Productos</h4>
-      <ul>
-        <li><a href="#productos">Recetas Médicas</a></li>
-        <li><a href="#productos">Órdenes de Exámenes</a></li>
-        <li><a href="#productos">Certificados</a></li>
-        <li><a href="#productos">Diseño a Medida</a></li>
-      </ul>
-    </div>
-    <div class="footer-col">
-      <h4>Empresa</h4>
-      <ul>
-        <li><a href="#inicio">Inicio</a></li>
-        <li><a href="#catalogo">Catálogo</a></li>
-        <li><a href="#galeria">Galería</a></li>
-        <li><a href="#plantillas">Plantillas</a></li>
-        <li><a href="#proceso">Proceso</a></li>
-        <li><a href="#contacto">Contacto</a></li>
-      </ul>
-    </div>
-    <div class="footer-col">
-      <h4>Contacto</h4>
-      <ul>
-        <li><i class="fas fa-location-dot"></i> Urmeneta 300 Local 15</li>
-        <li><i class="fas fa-city"></i> Puerto Montt</li>
-        <li><i class="fab fa-whatsapp"></i> +56 9 7847 2489</li>
-      </ul>
-    </div>
-  </div>
   <div class="footer-bottom">
-    <p>© 2026 Imprenta Central. Todos los derechos reservados. | Puerto Montt, Chile</p>
+    <p>© 2026 Imprenta Central - Urmeneta 300 Local 15, Puerto Montt | WhatsApp: +56 9 7847 2489</p>
   </div>
 </footer>
 
@@ -1730,32 +749,47 @@
   <i class="fab fa-whatsapp"></i>
 </a>
 
-<script>
-  // Datos de profesionales basados en el PDF
-  const profesionales = [
-    { nombre: 'Marcela Andrade', titulo: 'MATRONA', registro: '1234567', rut: '20.123.456-7', telefono: '(55) 1234-5678', direccion: 'Calle Cualquiera 123' },
-    { nombre: 'Javiera García', titulo: 'Matrona', registro: '123456', rut: '20.123.456-7', telefono: '(55) 1234-5678', direccion: 'Piso 3 | Consultorio 10 | Calle Cualquiera 123' },
-    { nombre: 'Carolina Muñoz', titulo: 'Matrona', registro: '2345678', rut: '21.234.567-8', telefono: '(55) 2345-6789', direccion: 'Av. Principal 456' },
-    { nombre: 'Patricia Soto', titulo: 'MATRONA', registro: '3456789', rut: '22.345.678-9', telefono: '(55) 3456-7890', direccion: 'Calle Salud 789' },
-    { nombre: 'Andrea López', titulo: 'Matrona', registro: '4567890', rut: '23.456.789-0', telefono: '(55) 4567-8901', direccion: 'Av. Los Médicos 321' },
-    { nombre: 'Daniela Rojas', titulo: 'MATRONA', registro: '5678901', rut: '24.567.890-1', telefono: '(55) 5678-9012', direccion: 'Calle Maternidad 654' },
-    { nombre: 'Valentina Torres', titulo: 'Matrona', registro: '6789012', rut: '25.678.901-2', telefono: '(55) 6789-0123', direccion: 'Av. Central 987' },
-    { nombre: 'Camila Herrera', titulo: 'MATRONA', registro: '7890123', rut: '26.789.012-3', telefono: '(55) 7890-1234', direccion: 'Calle Puerto Montt 147' }
-  ];
+<div class="modal" id="imageModal">
+  <button class="modal-close" onclick="closeModal()">×</button>
+  <img id="modalImage" src="" alt="Vista ampliada">
+</div>
 
-  // URLs de imágenes desde GitHub - 64 imágenes reales
-  const BASE_URL = 'https://raw.githubusercontent.com/jamac2006/recetas/ede2d60da38f711ef07c181929634f56706c5d33/imagen';
+<script>
+  // URL base del repositorio de GitHub con el commit específico
+  const GITHUB_BASE = 'https://raw.githubusercontent.com/jamac2006/recetas/6d783b43a205d069bb4d97c0bdc6a0e4dbab58dd/imagen';
+  
+  // Generar las 64 URLs de imágenes
   const imagenesCatalogo = [];
   for (let i = 1; i <= 64; i++) {
-    imagenesCatalogo.push(`${BASE_URL}/imagen${i}.png`);
+    imagenesCatalogo.push(`${GITHUB_BASE}/imagen${i}.png`);
   }
 
-  // Generar 64 plantillas - cada una con su imagen única
+  // Datos de profesionales del PDF
+  const profesionales = [
+    { 
+      nombre: 'Marcela Andrade', 
+      titulo: 'MATRONA', 
+      registro: '1234567', 
+      rut: '20.123.456-7', 
+      telefono: '(55) 1234-5678', 
+      direccion: 'Calle Cualquiera 123, Cualquier Lugar'
+    },
+    { 
+      nombre: 'Javiera García', 
+      titulo: 'Matrona', 
+      registro: '123456', 
+      rut: '20.123.456-7', 
+      telefono: '(55) 1234-5678', 
+      direccion: 'Piso 3 | Consultorio 10 | Calle Cualquiera 123'
+    }
+  ];
+
+  // Generar 64 plantillas
   const categorias = ['receta', 'receta', 'examen', 'certificado'];
   const plantillas = [];
   
   for (let i = 1; i <= 64; i++) {
-    const profIndex = (i - 1) % 8;
+    const profIndex = (i - 1) % 2;
     const categoria = categorias[(i - 1) % 4];
     const prof = profesionales[profIndex];
     
@@ -1776,9 +810,24 @@
     });
   }
 
-  // Renderizar catálogo
   let plantillasVisibles = 12;
   let filtroActual = 'all';
+
+  // Función para generar placeholder SVG cuando la imagen no carga
+  function generarPlaceholder(p) {
+    return `
+      <div class="catalog-placeholder">
+        <div class="placeholder-number">${String(p.numero).padStart(2, '0')}</div>
+        <div class="placeholder-title">${p.categoriaNombre}</div>
+        <div class="placeholder-prof">${p.profesional}</div>
+        <div class="placeholder-info">
+          ${p.titulo}<br>
+          Registro: ${p.registro}<br>
+          RUT: ${p.rut}
+        </div>
+      </div>
+    `;
+  }
 
   function renderizarCatalogo() {
     const grid = document.getElementById('catalogGrid');
@@ -1791,7 +840,13 @@
     grid.innerHTML = plantillasMostrar.map(p => `
       <div class="catalog-card" data-categoria="${p.categoria}">
         <div class="catalog-image-container">
-          <img src="${p.imagen}" alt="${p.nombre}" class="catalog-image" onerror="this.src='https://via.placeholder.com/400x500/FF006E/FFFFFF?text=Modelo+${p.numero}'">
+          ${generarPlaceholder(p)}
+          <img src="${p.imagen}" 
+               alt="${p.nombre}" 
+               class="catalog-image" 
+               onclick="verPlantilla(${p.id})"
+               onerror="this.style.display='none'"
+               onload="this.previousElementSibling.style.display='none'">
           <div class="catalog-number">${p.numero}</div>
           ${p.destacado ? '<div class="catalog-badge">⭐ Destacado</div>' : ''}
         </div>
@@ -1805,7 +860,7 @@
             <li><i class="fas fa-location-dot"></i> ${p.direccion}</li>
           </ul>
           <div class="catalog-actions">
-            <a href="https://wa.me/56978472489?text=Hola,%20quiero%20el%20${encodeURIComponent(p.nombre)}%20para%20${encodeURIComponent(p.profesional)}" 
+            <a href="https://wa.me/56978472489?text=${encodeURIComponent(`Hola Imprenta Central! Quiero solicitar el ${p.nombre} para ${p.profesional} (${p.titulo}). ¿Me pueden cotizar?`)}" 
                class="btn-whatsapp" target="_blank">
               <i class="fab fa-whatsapp"></i> Solicitar
             </a>
@@ -1817,7 +872,6 @@
       </div>
     `).join('');
 
-    // Actualizar botón cargar más
     const loadMoreBtn = document.getElementById('loadMoreBtn');
     if (plantillasVisibles >= plantillasFiltradas.length) {
       loadMoreBtn.style.display = 'none';
@@ -1826,7 +880,6 @@
     }
   }
 
-  // Filtros
   document.querySelectorAll('.filter-btn').forEach(btn => {
     btn.addEventListener('click', function() {
       document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
@@ -1837,165 +890,26 @@
     });
   });
 
-  // Cargar más
   document.getElementById('loadMoreBtn').addEventListener('click', function() {
     plantillasVisibles += 12;
     renderizarCatalogo();
   });
 
-  // Ver plantilla
   function verPlantilla(id) {
     const plantilla = plantillas.find(p => p.id === id);
     if (plantilla) {
-      window.open(plantilla.imagen, '_blank');
+      document.getElementById('modalImage').src = plantilla.imagen;
+      document.getElementById('imageModal').classList.add('active');
     }
   }
 
-  // Upload functionality
-  let currentImage = null;
-  let templates = JSON.parse(localStorage.getItem('templates')) || [];
-
-  const uploadArea = document.getElementById('uploadArea');
-  const fileInput = document.getElementById('fileInput');
-  const previewContainer = document.getElementById('previewContainer');
-  const previewImage = document.getElementById('previewImage');
-  const uploadForm = document.getElementById('uploadForm');
-
-  uploadArea.addEventListener('dragover', (e) => {
-    e.preventDefault();
-    uploadArea.classList.add('dragover');
-  });
-
-  uploadArea.addEventListener('dragleave', () => {
-    uploadArea.classList.remove('dragover');
-  });
-
-  uploadArea.addEventListener('drop', (e) => {
-    e.preventDefault();
-    uploadArea.classList.remove('dragover');
-    const file = e.dataTransfer.files[0];
-    if (file && file.type.startsWith('image/')) {
-      handleFile(file);
-    }
-  });
-
-  uploadArea.addEventListener('click', (e) => {
-    if (e.target.tagName !== 'BUTTON') {
-      fileInput.click();
-    }
-  });
-
-  fileInput.addEventListener('change', (e) => {
-    const file = e.target.files[0];
-    if (file) {
-      handleFile(file);
-    }
-  });
-
-  function handleFile(file) {
-    const reader = new FileReader();
-    reader.onload = (e) => {
-      currentImage = e.target.result;
-      previewImage.src = currentImage;
-      previewContainer.classList.add('active');
-      uploadForm.style.display = 'grid';
-      uploadArea.style.display = 'none';
-    };
-    reader.readAsDataURL(file);
+  function closeModal() {
+    document.getElementById('imageModal').classList.remove('active');
   }
 
-  uploadForm.addEventListener('submit', (e) => {
-    e.preventDefault();
-    
-    const template = {
-      id: Date.now(),
-      name: document.getElementById('templateName').value,
-      category: document.getElementById('templateCategory').value,
-      client: document.getElementById('templateClient').value,
-      description: document.getElementById('templateDescription').value,
-      image: currentImage,
-      date: new Date().toLocaleDateString('es-CL')
-    };
-
-    templates.unshift(template);
-    localStorage.setItem('templates', JSON.stringify(templates));
-    
-    resetForm();
-    renderTemplates();
-    
-    alert('¡Plantilla guardada exitosamente!');
+  document.getElementById('imageModal').addEventListener('click', function(e) {
+    if (e.target === this) closeModal();
   });
-
-  function resetForm() {
-    currentImage = null;
-    uploadForm.reset();
-    previewContainer.classList.remove('active');
-    uploadForm.style.display = 'none';
-    uploadArea.style.display = 'block';
-    fileInput.value = '';
-  }
-
-  function deleteTemplate(id) {
-    if (confirm('¿Estás seguro de eliminar esta plantilla?')) {
-      templates = templates.filter(t => t.id !== id);
-      localStorage.setItem('templates', JSON.stringify(templates));
-      renderTemplates();
-    }
-  }
-
-  function renderTemplates() {
-    const grid = document.getElementById('templatesGrid');
-    const emptyState = document.getElementById('emptyState');
-
-    if (templates.length === 0) {
-      grid.style.display = 'none';
-      emptyState.style.display = 'block';
-      return;
-    }
-
-    grid.style.display = 'grid';
-    emptyState.style.display = 'none';
-
-    const categoryNames = {
-      'receta': 'Receta Médica',
-      'examen': 'Orden de Exámenes',
-      'certificado': 'Certificado Médico',
-      'otro': 'Otro'
-    };
-
-    grid.innerHTML = templates.map(template => `
-      <div class="template-card">
-        <button class="delete-btn" onclick="deleteTemplate(${template.id})">
-          <i class="fas fa-trash"></i>
-        </button>
-        <img src="${template.image}" alt="${template.name}" class="template-image">
-        <div class="template-info">
-          <h4>${template.name}</h4>
-          <p>${template.client || 'Sin cliente especificado'}</p>
-          <p style="font-size: 0.85rem; color: #888; margin-bottom: 10px;">${template.description || ''}</p>
-          <div class="template-meta">
-            <span class="template-category">${categoryNames[template.category]}</span>
-            <span>${template.date}</span>
-          </div>
-        </div>
-      </div>
-    `).join('');
-  }
-
-  renderTemplates();
-
-  function enviarWhatsApp(e) {
-    e.preventDefault();
-    const nombre = document.getElementById('nombre').value;
-    const telefono = document.getElementById('telefono').value;
-    const tipo = document.getElementById('tipo').value;
-    const cantidad = document.getElementById('cantidad').value;
-    const mensaje = document.getElementById('mensaje').value;
-    
-    const texto = `Hola Imprenta Central!%0A%0A*Solicitud de Cotización*%0A%0A*Nombre:* ${nombre}%0A*Teléfono:* ${telefono}%0A*Tipo de Talonario:* ${tipo}%0A*Cantidad:* ${cantidad}%0A*Mensaje:* ${mensaje || 'Sin mensaje adicional'}`;
-    
-    window.open(`https://wa.me/56978472489?text=${texto}`, '_blank');
-  }
 
   document.querySelectorAll('a[href^="#"]').forEach(anchor => {
     anchor.addEventListener('click', function (e) {
@@ -2008,16 +922,6 @@
     });
   });
 
-  window.addEventListener('scroll', () => {
-    const header = document.querySelector('header');
-    if (window.scrollY > 50) {
-      header.style.boxShadow = '0 5px 30px rgba(255,0,110,0.15)';
-    } else {
-      header.style.boxShadow = '0 2px 20px rgba(255,0,110,0.1)';
-    }
-  });
-
-  // Inicializar catálogo
   renderizarCatalogo();
 </script>
 
