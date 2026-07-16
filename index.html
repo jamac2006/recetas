@@ -1,930 +1,1717 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Imprenta Central | Talonarios Médicos en Puerto Montt</title>
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/fontsource-poppins@4.0.0/index.css">
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-<style>
-  * { margin: 0; padding: 0; box-sizing: border-box; }
-  :root {
-    --magenta: #FF006E;
-    --cyan: #00BBF9;
-    --orange: #FB5607;
-    --yellow: #FFBE0B;
-    --purple: #8338EC;
-    --green: #06D6A0;
-    --dark: #1a1a2e;
-    --light: #f8f9ff;
-  }
-  body {
-    font-family: 'Poppins', sans-serif;
-    background: var(--light);
-    color: var(--dark);
-    overflow-x: hidden;
-  }
-  header {
-    position: fixed;
-    top: 0; left: 0; right: 0;
-    background: rgba(255,255,255,0.95);
-    backdrop-filter: blur(10px);
-    z-index: 1000;
-    padding: 15px 5%;
-    box-shadow: 0 2px 20px rgba(255,0,110,0.1);
-    transition: all 0.3s;
-  }
-  .nav-container {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    max-width: 1400px;
-    margin: 0 auto;
-  }
-  .logo {
-    display: flex;
-    align-items: center;
-    gap: 10px;
-    font-weight: 800;
-    font-size: 1.5rem;
-  }
-  .logo-icon {
-    width: 45px; height: 45px;
-    background: linear-gradient(135deg, var(--magenta), var(--orange));
-    border-radius: 12px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    color: white;
-    font-size: 1.3rem;
-    box-shadow: 0 4px 15px rgba(255,0,110,0.4);
-  }
-  .logo-text {
-    background: linear-gradient(135deg, var(--magenta), var(--purple));
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-  }
-  nav ul {
-    display: flex;
-    list-style: none;
-    gap: 30px;
-  }
-  nav a {
-    text-decoration: none;
-    color: var(--dark);
-    font-weight: 600;
-    transition: color 0.3s;
-    position: relative;
-  }
-  nav a:hover { color: var(--magenta); }
-  nav a::after {
-    content: '';
-    position: absolute;
-    bottom: -5px; left: 0;
-    width: 0; height: 3px;
-    background: linear-gradient(90deg, var(--magenta), var(--orange));
-    transition: width 0.3s;
-  }
-  nav a:hover::after { width: 100%; }
-  .nav-cta {
-    background: linear-gradient(135deg, var(--magenta), var(--orange));
-    color: white !important;
-    padding: 10px 20px;
-    border-radius: 30px;
-    font-weight: 700;
-  }
-  .nav-cta::after { display: none !important; }
-  .nav-cta:hover { transform: scale(1.05); }
-  .menu-toggle { display: none; font-size: 1.5rem; cursor: pointer; color: var(--magenta); }
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Imprenta Central - Galería de Talonarios Médicos | Puerto Montt</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800;900&family=Playfair+Display:wght@700;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
 
-  .hero {
-    min-height: 100vh;
-    padding: 120px 5% 80px;
-    background: linear-gradient(135deg, #fff5f8 0%, #e8f4ff 50%, #fff9e0 100%);
-    position: relative;
-    overflow: hidden;
-    display: flex;
-    align-items: center;
-  }
-  .hero-container {
-    max-width: 1400px;
-    margin: 0 auto;
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 60px;
-    align-items: center;
-    position: relative;
-    z-index: 2;
-  }
-  .hero-content h1 {
-    font-size: 3.5rem;
-    line-height: 1.1;
-    margin-bottom: 20px;
-    font-weight: 800;
-  }
-  .hero-content h1 span {
-    background: linear-gradient(135deg, var(--magenta), var(--orange));
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    display: inline-block;
-  }
-  .hero-content p {
-    font-size: 1.2rem;
-    color: #555;
-    margin-bottom: 30px;
-    line-height: 1.6;
-  }
-  .hero-badges {
-    display: flex;
-    gap: 15px;
-    flex-wrap: wrap;
-    margin-bottom: 30px;
-  }
-  .badge {
-    background: white;
-    padding: 8px 16px;
-    border-radius: 30px;
-    font-size: 0.9rem;
-    font-weight: 600;
-    box-shadow: 0 4px 15px rgba(0,0,0,0.08);
-    display: flex;
-    align-items: center;
-    gap: 8px;
-  }
-  .badge i { color: var(--green); }
-  .hero-buttons {
-    display: flex;
-    gap: 15px;
-    flex-wrap: wrap;
-  }
-  .btn {
-    padding: 15px 30px;
-    border-radius: 50px;
-    font-weight: 700;
-    text-decoration: none;
-    display: inline-flex;
-    align-items: center;
-    gap: 10px;
-    transition: all 0.3s;
-    border: none;
-    cursor: pointer;
-    font-size: 1rem;
-    font-family: inherit;
-  }
-  .btn-primary {
-    background: linear-gradient(135deg, var(--magenta), var(--orange));
-    color: white;
-    box-shadow: 0 8px 25px rgba(255,0,110,0.4);
-  }
-  .btn-primary:hover { transform: translateY(-3px); box-shadow: 0 12px 30px rgba(255,0,110,0.5); }
-  .btn-secondary {
-    background: white;
-    color: var(--dark);
-    border: 2px solid var(--dark);
-  }
-  .btn-secondary:hover { background: var(--dark); color: white; }
+        :root {
+            --primary: #FF2D78;
+            --secondary: #7B2FFF;
+            --accent: #00D4FF;
+            --gold: #FFD700;
+            --dark: #1a1a2e;
+            --light: #f8f9ff;
+            --success: #25D366;
+        }
 
-  section { padding: 100px 5%; }
-  .section-header {
-    text-align: center;
-    max-width: 700px;
-    margin: 0 auto 60px;
-  }
-  .section-tag {
-    display: inline-block;
-    background: linear-gradient(135deg, var(--magenta), var(--orange));
-    color: white;
-    padding: 6px 16px;
-    border-radius: 30px;
-    font-size: 0.85rem;
-    font-weight: 700;
-    margin-bottom: 15px;
-    text-transform: uppercase;
-    letter-spacing: 1px;
-  }
-  .section-header h2 {
-    font-size: 2.8rem;
-    font-weight: 800;
-    margin-bottom: 15px;
-    line-height: 1.2;
-  }
-  .section-header p { color: #666; font-size: 1.1rem; }
+        body {
+            font-family: 'Poppins', sans-serif;
+            overflow-x: hidden;
+            background: var(--light);
+            color: var(--dark);
+        }
 
-  .catalog-section {
-    background: linear-gradient(135deg, #f0f9ff 0%, #fff5f8 100%);
-    padding: 100px 5%;
-  }
-  .catalog-container {
-    max-width: 1400px;
-    margin: 0 auto;
-  }
-  .catalog-filters {
-    display: flex;
-    justify-content: center;
-    gap: 15px;
-    margin-bottom: 50px;
-    flex-wrap: wrap;
-  }
-  .filter-btn {
-    padding: 12px 25px;
-    border-radius: 30px;
-    border: 2px solid var(--magenta);
-    background: white;
-    color: var(--magenta);
-    font-weight: 600;
-    cursor: pointer;
-    transition: all 0.3s;
-    font-family: inherit;
-    font-size: 0.95rem;
-  }
-  .filter-btn:hover,
-  .filter-btn.active {
-    background: linear-gradient(135deg, var(--magenta), var(--orange));
-    color: white;
-    transform: translateY(-2px);
-    box-shadow: 0 5px 15px rgba(255,0,110,0.3);
-  }
-  .catalog-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-    gap: 30px;
-  }
-  .catalog-card {
-    background: white;
-    border-radius: 20px;
-    overflow: hidden;
-    box-shadow: 0 10px 30px rgba(0,0,0,0.08);
-    transition: all 0.4s;
-    display: flex;
-    flex-direction: column;
-  }
-  .catalog-card:hover {
-    transform: translateY(-8px);
-    box-shadow: 0 20px 50px rgba(0,0,0,0.15);
-  }
-  .catalog-image-container {
-    position: relative;
-    height: 420px;
-    overflow: hidden;
-    background: #f8f9fa;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-  }
-  .catalog-image {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    transition: transform 0.5s;
-  }
-  .catalog-card:hover .catalog-image {
-    transform: scale(1.05);
-  }
-  .catalog-placeholder {
-    width: 100%;
-    height: 100%;
-    background: linear-gradient(135deg, #fff5f8, #e8f4ff);
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    padding: 20px;
-    text-align: center;
-    position: absolute;
-    top: 0;
-    left: 0;
-  }
-  .catalog-placeholder .placeholder-number {
-    font-size: 5rem;
-    font-weight: 900;
-    background: linear-gradient(135deg, var(--magenta), var(--orange));
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    line-height: 1;
-    margin-bottom: 15px;
-  }
-  .catalog-placeholder .placeholder-title {
-    font-size: 1.1rem;
-    font-weight: 700;
-    color: var(--dark);
-    margin-bottom: 8px;
-  }
-  .catalog-placeholder .placeholder-prof {
-    font-size: 0.95rem;
-    color: var(--magenta);
-    font-weight: 600;
-    margin-bottom: 15px;
-  }
-  .catalog-placeholder .placeholder-info {
-    font-size: 0.8rem;
-    color: #666;
-    line-height: 1.6;
-  }
-  .catalog-number {
-    position: absolute;
-    top: 15px;
-    left: 15px;
-    background: linear-gradient(135deg, var(--magenta), var(--orange));
-    color: white;
-    width: 50px;
-    height: 50px;
-    border-radius: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-weight: 800;
-    font-size: 1.2rem;
-    box-shadow: 0 4px 15px rgba(255,0,110,0.4);
-    z-index: 2;
-  }
-  .catalog-badge {
-    position: absolute;
-    top: 15px;
-    right: 15px;
-    background: white;
-    padding: 6px 14px;
-    border-radius: 20px;
-    font-size: 0.75rem;
-    font-weight: 700;
-    color: var(--dark);
-    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
-    z-index: 2;
-  }
-  .catalog-info {
-    padding: 25px;
-    flex-grow: 1;
-    display: flex;
-    flex-direction: column;
-  }
-  .catalog-info h3 {
-    font-size: 1.3rem;
-    margin-bottom: 8px;
-    color: var(--dark);
-    font-weight: 700;
-  }
-  .catalog-info .professional {
-    color: var(--magenta);
-    font-weight: 600;
-    font-size: 1rem;
-    margin-bottom: 12px;
-  }
-  .catalog-details {
-    list-style: none;
-    margin-bottom: 20px;
-    flex-grow: 1;
-  }
-  .catalog-details li {
-    padding: 5px 0;
-    font-size: 0.85rem;
-    color: #666;
-    display: flex;
-    align-items: center;
-    gap: 8px;
-  }
-  .catalog-details li i {
-    color: var(--green);
-    width: 16px;
-  }
-  .catalog-actions {
-    display: flex;
-    gap: 10px;
-    padding-top: 15px;
-    border-top: 1px dashed #eee;
-  }
-  .btn-whatsapp {
-    flex: 1;
-    background: linear-gradient(135deg, #25D366, #128C7E);
-    color: white;
-    padding: 12px 20px;
-    border-radius: 12px;
-    text-decoration: none;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 8px;
-    font-weight: 700;
-    font-size: 0.95rem;
-    transition: all 0.3s;
-    border: none;
-    cursor: pointer;
-    font-family: inherit;
-  }
-  .btn-whatsapp:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 8px 20px rgba(37,211,102,0.4);
-  }
-  .btn-view {
-    background: white;
-    color: var(--magenta);
-    border: 2px solid var(--magenta);
-    padding: 12px 20px;
-    border-radius: 12px;
-    font-weight: 700;
-    font-size: 0.95rem;
-    cursor: pointer;
-    transition: all 0.3s;
-    font-family: inherit;
-  }
-  .btn-view:hover {
-    background: var(--magenta);
-    color: white;
-  }
-  .catalog-stats {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-    gap: 25px;
-    margin-bottom: 50px;
-  }
-  .stat-card {
-    background: white;
-    padding: 30px;
-    border-radius: 20px;
-    text-align: center;
-    box-shadow: 0 10px 30px rgba(0,0,0,0.08);
-  }
-  .stat-number {
-    font-size: 3rem;
-    font-weight: 800;
-    background: linear-gradient(135deg, var(--magenta), var(--orange));
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    margin-bottom: 10px;
-  }
-  .stat-label {
-    color: #666;
-    font-size: 1rem;
-    font-weight: 600;
-  }
-  .load-more-container {
-    text-align: center;
-    margin-top: 50px;
-  }
-  .btn-load-more {
-    background: linear-gradient(135deg, var(--magenta), var(--orange));
-    color: white;
-    padding: 15px 40px;
-    border-radius: 30px;
-    border: none;
-    font-weight: 700;
-    font-size: 1.1rem;
-    cursor: pointer;
-    transition: all 0.3s;
-    font-family: inherit;
-  }
-  .btn-load-more:hover {
-    transform: translateY(-3px);
-    box-shadow: 0 10px 30px rgba(255,0,110,0.4);
-  }
+        /* Navbar */
+        .navbar {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            z-index: 1000;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(20px);
+            box-shadow: 0 2px 30px rgba(0,0,0,0.1);
+            transition: all 0.3s ease;
+        }
 
-  .contact {
-    background: white;
-  }
-  .contact-container {
-    max-width: 1200px;
-    margin: 0 auto;
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 60px;
-    align-items: center;
-  }
-  .contact-info h2 {
-    font-size: 2.5rem;
-    margin-bottom: 20px;
-    font-weight: 800;
-  }
-  .contact-info h2 span {
-    background: linear-gradient(135deg, var(--magenta), var(--orange));
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-  }
-  .contact-info > p {
-    color: #666;
-    margin-bottom: 30px;
-    line-height: 1.6;
-  }
-  .contact-list {
-    list-style: none;
-    margin-bottom: 30px;
-  }
-  .contact-list li {
-    display: flex;
-    align-items: flex-start;
-    gap: 15px;
-    padding: 15px 0;
-    border-bottom: 1px solid #f0f0f0;
-  }
-  .contact-list i {
-    width: 45px; height: 45px;
-    background: linear-gradient(135deg, var(--magenta), var(--orange));
-    color: white;
-    border-radius: 12px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 1.1rem;
-    flex-shrink: 0;
-  }
-  .contact-list strong { display: block; margin-bottom: 3px; }
-  .contact-list span { color: #666; font-size: 0.95rem; }
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 15px 30px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
 
-  footer {
-    background: var(--dark);
-    color: white;
-    padding: 40px 5% 20px;
-    text-align: center;
-  }
-  .footer-bottom {
-    border-top: 1px solid rgba(255,255,255,0.1);
-    padding-top: 25px;
-    color: #888;
-    font-size: 0.9rem;
-  }
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
 
-  .whatsapp-float {
-    position: fixed;
-    bottom: 30px; right: 30px;
-    width: 65px; height: 65px;
-    background: #25D366;
-    border-radius: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    color: white;
-    font-size: 2rem;
-    text-decoration: none;
-    box-shadow: 0 10px 30px rgba(37,211,102,0.4);
-    z-index: 999;
-    animation: pulse 2s infinite;
-  }
-  @keyframes pulse {
-    0%, 100% { box-shadow: 0 10px 30px rgba(37,211,102,0.4); }
-    50% { box-shadow: 0 10px 40px rgba(37,211,102,0.7); }
-  }
+        .logo-icon {
+            width: 50px;
+            height: 50px;
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 24px;
+            font-weight: 900;
+            box-shadow: 0 4px 15px rgba(255, 45, 120, 0.4);
+        }
 
-  .modal {
-    display: none;
-    position: fixed;
-    inset: 0;
-    background: rgba(0,0,0,0.9);
-    z-index: 2000;
-    justify-content: center;
-    align-items: center;
-    padding: 20px;
-  }
-  .modal.active {
-    display: flex;
-  }
-  .modal img {
-    max-width: 90%;
-    max-height: 90vh;
-    border-radius: 15px;
-    box-shadow: 0 20px 60px rgba(0,0,0,0.5);
-  }
-  .modal-close {
-    position: absolute;
-    top: 20px;
-    right: 30px;
-    color: white;
-    font-size: 2rem;
-    cursor: pointer;
-    background: rgba(255,0,110,0.8);
-    width: 50px;
-    height: 50px;
-    border-radius: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    border: none;
-  }
+        .logo-text {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.5rem;
+            font-weight: 900;
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
 
-  @media (max-width: 968px) {
-    .hero-container, .contact-container { grid-template-columns: 1fr; }
-    .hero-content h1 { font-size: 2.5rem; }
-    .section-header h2 { font-size: 2rem; }
-    nav ul { display: none; }
-    .menu-toggle { display: block; }
-    nav ul.active {
-      display: flex;
-      flex-direction: column;
-      position: absolute;
-      top: 100%; left: 0; right: 0;
-      background: white;
-      padding: 20px;
-      box-shadow: 0 10px 30px rgba(0,0,0,0.1);
-    }
-  }
-  @media (max-width: 600px) {
-    .hero-content h1 { font-size: 2rem; }
-    section { padding: 60px 5%; }
-    .catalog-grid {
-      grid-template-columns: 1fr;
-    }
-  }
-</style>
+        .nav-links {
+            display: flex;
+            gap: 30px;
+            list-style: none;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: var(--dark);
+            font-weight: 500;
+            font-size: 0.95rem;
+            transition: color 0.3s;
+            position: relative;
+        }
+
+        .nav-links a:hover { color: var(--primary); }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: linear-gradient(90deg, var(--primary), var(--secondary));
+            transition: width 0.3s;
+        }
+
+        .nav-links a:hover::after { width: 100%; }
+
+        .nav-cta {
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            color: white !important;
+            padding: 10px 25px;
+            border-radius: 50px;
+            font-weight: 600;
+            box-shadow: 0 4px 15px rgba(255, 45, 120, 0.4);
+        }
+
+        .nav-cta::after { display: none !important; }
+
+        .hamburger {
+            display: none;
+            font-size: 1.5rem;
+            cursor: pointer;
+            color: var(--dark);
+        }
+
+        /* Hero */
+        .hero {
+            min-height: 70vh;
+            display: flex;
+            align-items: center;
+            position: relative;
+            overflow: hidden;
+            background: linear-gradient(135deg, #fff5f9 0%, #f0e6ff 50%, #e6f7ff 100%);
+            padding-top: 100px;
+        }
+
+        .hero-bg-shapes {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            top: 0;
+            left: 0;
+            pointer-events: none;
+        }
+
+        .shape {
+            position: absolute;
+            border-radius: 50%;
+            opacity: 0.1;
+        }
+
+        .shape-1 {
+            width: 400px;
+            height: 400px;
+            background: var(--primary);
+            top: -100px;
+            right: -100px;
+            animation: float 6s ease-in-out infinite;
+        }
+
+        .shape-2 {
+            width: 300px;
+            height: 300px;
+            background: var(--secondary);
+            bottom: -50px;
+            left: -50px;
+            animation: float 8s ease-in-out infinite reverse;
+        }
+
+        .shape-3 {
+            width: 200px;
+            height: 200px;
+            background: var(--accent);
+            top: 50%;
+            left: 50%;
+            animation: float 7s ease-in-out infinite;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0) rotate(0deg); }
+            50% { transform: translateY(-30px) rotate(10deg); }
+        }
+
+        .hero-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 30px;
+            text-align: center;
+            position: relative;
+            z-index: 2;
+        }
+
+        .hero-content h1 {
+            font-family: 'Playfair Display', serif;
+            font-size: 3.5rem;
+            font-weight: 900;
+            line-height: 1.1;
+            margin-bottom: 20px;
+        }
+
+        .hero-content h1 .highlight {
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .hero-content p {
+            font-size: 1.2rem;
+            color: #555;
+            margin-bottom: 30px;
+            line-height: 1.7;
+            max-width: 700px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .hero-badges {
+            display: flex;
+            gap: 15px;
+            margin-bottom: 35px;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+
+        .badge {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            padding: 8px 18px;
+            border-radius: 50px;
+            font-size: 0.85rem;
+            font-weight: 600;
+        }
+
+        .badge-1 { background: #fff0f5; color: var(--primary); border: 2px solid #ffd0e0; }
+        .badge-2 { background: #f0e6ff; color: var(--secondary); border: 2px solid #d4b8ff; }
+        .badge-3 { background: #e6f7ff; color: #0099cc; border: 2px solid #b3e0ff; }
+
+        .hero-buttons {
+            display: flex;
+            gap: 15px;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+
+        .btn-primary {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            padding: 16px 35px;
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            color: white;
+            text-decoration: none;
+            border-radius: 50px;
+            font-weight: 700;
+            font-size: 1rem;
+            box-shadow: 0 8px 30px rgba(255, 45, 120, 0.4);
+            transition: all 0.3s ease;
+            border: none;
+            cursor: pointer;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 12px 40px rgba(255, 45, 120, 0.5);
+        }
+
+        .btn-secondary {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            padding: 16px 35px;
+            background: white;
+            color: var(--dark);
+            text-decoration: none;
+            border-radius: 50px;
+            font-weight: 700;
+            font-size: 1rem;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+            transition: all 0.3s ease;
+            border: 2px solid #eee;
+            cursor: pointer;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        .btn-secondary:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 30px rgba(0,0,0,0.15);
+            border-color: var(--primary);
+        }
+
+        /* Stats */
+        .stats {
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            padding: 40px 30px;
+        }
+
+        .stats-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 30px;
+        }
+
+        .stat-item { text-align: center; color: white; }
+
+        .stat-number {
+            font-size: 2.5rem;
+            font-weight: 900;
+            font-family: 'Playfair Display', serif;
+        }
+
+        .stat-label { font-size: 0.9rem; opacity: 0.9; margin-top: 5px; }
+
+        /* Gallery Section */
+        .gallery-section {
+            padding: 100px 30px;
+            background: white;
+            position: relative;
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 50px;
+        }
+
+        .section-tag {
+            display: inline-block;
+            padding: 8px 20px;
+            background: linear-gradient(135deg, #fff0f5, #f0e6ff);
+            color: var(--primary);
+            border-radius: 50px;
+            font-weight: 600;
+            font-size: 0.85rem;
+            margin-bottom: 15px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .section-header h2 {
+            font-family: 'Playfair Display', serif;
+            font-size: 2.8rem;
+            font-weight: 900;
+            color: var(--dark);
+            margin-bottom: 15px;
+        }
+
+        .section-header p {
+            font-size: 1.1rem;
+            color: #666;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        /* Upload Area */
+        .upload-section {
+            max-width: 1200px;
+            margin: 0 auto 40px;
+        }
+
+        .upload-area {
+            border: 3px dashed #d4b8ff;
+            border-radius: 24px;
+            padding: 50px 30px;
+            text-align: center;
+            background: linear-gradient(135deg, #fff5f9 0%, #f0e6ff 100%);
+            transition: all 0.3s ease;
+            cursor: pointer;
+            position: relative;
+        }
+
+        .upload-area.dragover {
+            border-color: var(--primary);
+            background: linear-gradient(135deg, #ffe0ec 0%, #e0d4ff 100%);
+            transform: scale(1.02);
+        }
+
+        .upload-area:hover {
+            border-color: var(--primary);
+            background: linear-gradient(135deg, #ffe0ec 0%, #e0d4ff 100%);
+        }
+
+        .upload-icon {
+            width: 80px;
+            height: 80px;
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 20px;
+            font-size: 2rem;
+            color: white;
+            box-shadow: 0 10px 30px rgba(255, 45, 120, 0.3);
+            animation: bounce 2s ease-in-out infinite;
+        }
+
+        @keyframes bounce {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-10px); }
+        }
+
+        .upload-area h3 {
+            font-size: 1.5rem;
+            font-weight: 700;
+            margin-bottom: 10px;
+            color: var(--dark);
+        }
+
+        .upload-area p {
+            color: #666;
+            margin-bottom: 20px;
+        }
+
+        .upload-area .btn-upload {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            padding: 12px 30px;
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            color: white;
+            border: none;
+            border-radius: 50px;
+            font-weight: 600;
+            cursor: pointer;
+            font-family: 'Poppins', sans-serif;
+            font-size: 0.95rem;
+            transition: all 0.3s ease;
+        }
+
+        .upload-area .btn-upload:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(255, 45, 120, 0.4);
+        }
+
+        .upload-hint {
+            margin-top: 15px;
+            font-size: 0.8rem;
+            color: #999;
+        }
+
+        #fileInput { display: none; }
+
+        /* Filters */
+        .filters-container {
+            max-width: 1200px;
+            margin: 0 auto 30px;
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 12px;
+        }
+
+        .filter-btn {
+            padding: 10px 22px;
+            border: 2px solid #eee;
+            background: white;
+            border-radius: 50px;
+            font-family: 'Poppins', sans-serif;
+            font-weight: 600;
+            font-size: 0.9rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            color: #555;
+        }
+
+        .filter-btn:hover {
+            border-color: var(--primary);
+            color: var(--primary);
+        }
+
+        .filter-btn.active {
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            color: white;
+            border-color: transparent;
+            box-shadow: 0 4px 15px rgba(255, 45, 120, 0.3);
+        }
+
+        .filter-btn i { margin-right: 6px; }
+
+        /* Gallery Grid */
+        .gallery-container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 25px;
+        }
+
+        .gallery-item {
+            position: relative;
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            transition: all 0.4s ease;
+            background: white;
+            cursor: pointer;
+            animation: fadeInUp 0.5s ease;
+        }
+
+        @keyframes fadeInUp {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .gallery-item:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 50px rgba(0,0,0,0.2);
+        }
+
+        .gallery-item-img-wrapper {
+            position: relative;
+            width: 100%;
+            height: 320px;
+            overflow: hidden;
+            background: linear-gradient(135deg, #f0e6ff, #fff5f9);
+        }
+
+        .gallery-item-img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+
+        .gallery-item:hover .gallery-item-img {
+            transform: scale(1.08);
+        }
+
+        .gallery-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(to top, rgba(26, 26, 46, 0.9) 0%, transparent 60%);
+            opacity: 0;
+            transition: opacity 0.3s ease;
+            display: flex;
+            align-items: flex-end;
+            padding: 20px;
+        }
+
+        .gallery-item:hover .gallery-overlay { opacity: 1; }
+
+        .overlay-actions {
+            display: flex;
+            gap: 10px;
+            width: 100%;
+        }
+
+        .overlay-btn {
+            flex: 1;
+            padding: 10px;
+            border: none;
+            border-radius: 10px;
+            cursor: pointer;
+            font-family: 'Poppins', sans-serif;
+            font-weight: 600;
+            font-size: 0.85rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 6px;
+            transition: all 0.3s ease;
+        }
+
+        .btn-view {
+            background: white;
+            color: var(--dark);
+        }
+
+        .btn-view:hover { background: var(--gold); }
+
+        .btn-delete {
+            background: var(--primary);
+            color: white;
+            width: 42px;
+            flex: none;
+        }
+
+        .btn-delete:hover { background: #e0206a; }
+
+        .gallery-item-info {
+            padding: 18px;
+        }
+
+        .gallery-item-title {
+            font-size: 1.05rem;
+            font-weight: 700;
+            color: var(--dark);
+            margin-bottom: 5px;
+        }
+
+        .gallery-item-category {
+            display: inline-block;
+            padding: 4px 12px;
+            border-radius: 50px;
+            font-size: 0.75rem;
+            font-weight: 600;
+            margin-bottom: 8px;
+        }
+
+        .cat-matrona { background: #fff0f5; color: var(--primary); }
+        .cat-medico { background: #e6f0ff; color: #0066cc; }
+        .cat-pediatria { background: #e6fff5; color: #00aa66; }
+        .cat-personalizado { background: #f0e6ff; color: var(--secondary); }
+        .cat-otro { background: #fff8e6; color: #cc8800; }
+
+        .gallery-item-price {
+            font-size: 1.3rem;
+            font-weight: 900;
+            color: var(--primary);
+        }
+
+        .gallery-item-price small {
+            font-size: 0.75rem;
+            color: #999;
+            font-weight: 400;
+        }
+
+        .gallery-item-badge {
+            position: absolute;
+            top: 15px;
+            left: 15px;
+            padding: 5px 12px;
+            border-radius: 50px;
+            font-size: 0.7rem;
+            font-weight: 700;
+            color: white;
+            text-transform: uppercase;
+            z-index: 2;
+        }
+
+        .badge-new { background: linear-gradient(135deg, var(--accent), #00b4d8); }
+        .badge-popular { background: linear-gradient(135deg, var(--primary), #ff6b9d); }
+        .badge-custom { background: linear-gradient(135deg, var(--secondary), #9b59b6); }
+
+        /* Empty State */
+        .empty-state {
+            text-align: center;
+            padding: 60px 20px;
+            grid-column: 1 / -1;
+        }
+
+        .empty-state i {
+            font-size: 4rem;
+            color: #ddd;
+            margin-bottom: 20px;
+        }
+
+        .empty-state h3 {
+            font-size: 1.5rem;
+            color: #999;
+            margin-bottom: 10px;
+        }
+
+        .empty-state p { color: #bbb; }
+
+        /* Lightbox */
+        .lightbox {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.95);
+            z-index: 3000;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+        }
+
+        .lightbox.active { display: flex; }
+
+        .lightbox-content {
+            max-width: 90%;
+            max-height: 90%;
+            position: relative;
+        }
+
+        .lightbox-img {
+            max-width: 100%;
+            max-height: 85vh;
+            border-radius: 12px;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.5);
+        }
+
+        .lightbox-close {
+            position: absolute;
+            top: -50px;
+            right: 0;
+            background: white;
+            border: none;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            font-size: 1.2rem;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s ease;
+        }
+
+        .lightbox-close:hover {
+            background: var(--primary);
+            color: white;
+            transform: rotate(90deg);
+        }
+
+        .lightbox-nav {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            background: white;
+            border: none;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            font-size: 1.2rem;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s ease;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.3);
+        }
+
+        .lightbox-nav:hover {
+            background: var(--primary);
+            color: white;
+        }
+
+        .lightbox-prev { left: -70px; }
+        .lightbox-next { right: -70px; }
+
+        .lightbox-info {
+            position: absolute;
+            bottom: -60px;
+            left: 0;
+            right: 0;
+            text-align: center;
+            color: white;
+        }
+
+        .lightbox-info h3 {
+            font-size: 1.3rem;
+            margin-bottom: 5px;
+        }
+
+        .lightbox-info p {
+            color: rgba(255,255,255,0.7);
+            font-size: 0.9rem;
+        }
+
+        /* Upload Modal */
+        .modal-overlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.6);
+            backdrop-filter: blur(5px);
+            z-index: 2000;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+        }
+
+        .modal-overlay.active { display: flex; }
+
+        .modal {
+            background: white;
+            border-radius: 24px;
+            max-width: 550px;
+            width: 100%;
+            padding: 40px;
+            position: relative;
+            animation: modalIn 0.3s ease;
+            max-height: 90vh;
+            overflow-y: auto;
+        }
+
+        @keyframes modalIn {
+            from { transform: scale(0.9); opacity: 0; }
+            to { transform: scale(1); opacity: 1; }
+        }
+
+        .modal-close {
+            position: absolute;
+            top: 15px;
+            right: 20px;
+            font-size: 1.5rem;
+            cursor: pointer;
+            color: #999;
+            background: none;
+            border: none;
+        }
+
+        .modal h3 {
+            font-size: 1.5rem;
+            font-weight: 700;
+            margin-bottom: 10px;
+            color: var(--dark);
+        }
+
+        .modal > p {
+            color: #666;
+            margin-bottom: 25px;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-group label {
+            display: block;
+            font-size: 0.85rem;
+            font-weight: 600;
+            color: #555;
+            margin-bottom: 8px;
+        }
+
+        .form-group input,
+        .form-group select,
+        .form-group textarea {
+            width: 100%;
+            padding: 14px 18px;
+            border: 2px solid #f0f0f0;
+            border-radius: 12px;
+            font-family: 'Poppins', sans-serif;
+            font-size: 0.95rem;
+            transition: all 0.3s ease;
+            outline: none;
+        }
+
+        .form-group input:focus,
+        .form-group select:focus,
+        .form-group textarea:focus {
+            border-color: var(--primary);
+            box-shadow: 0 0 0 4px rgba(255, 45, 120, 0.1);
+        }
+
+        .form-group textarea {
+            resize: vertical;
+            min-height: 80px;
+        }
+
+        .preview-container {
+            margin-bottom: 20px;
+            border-radius: 12px;
+            overflow: hidden;
+            border: 2px solid #f0f0f0;
+            display: none;
+        }
+
+        .preview-container.active { display: block; }
+
+        .preview-img {
+            width: 100%;
+            max-height: 200px;
+            object-fit: cover;
+        }
+
+        .btn-submit {
+            width: 100%;
+            padding: 16px;
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            color: white;
+            border: none;
+            border-radius: 12px;
+            font-family: 'Poppins', sans-serif;
+            font-size: 1rem;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+        }
+
+        .btn-submit:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 30px rgba(255, 45, 120, 0.4);
+        }
+
+        /* Toast */
+        .toast-container {
+            position: fixed;
+            top: 100px;
+            right: 30px;
+            z-index: 4000;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        .toast {
+            background: white;
+            padding: 15px 25px;
+            border-radius: 12px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            min-width: 280px;
+            animation: slideIn 0.3s ease;
+            border-left: 4px solid var(--success);
+        }
+
+        .toast.error { border-left-color: var(--primary); }
+
+        .toast i { font-size: 1.3rem; color: var(--success); }
+        .toast.error i { color: var(--primary); }
+
+        .toast-content h4 {
+            font-size: 0.95rem;
+            font-weight: 700;
+            color: var(--dark);
+        }
+
+        .toast-content p {
+            font-size: 0.8rem;
+            color: #777;
+        }
+
+        @keyframes slideIn {
+            from { transform: translateX(100%); opacity: 0; }
+            to { transform: translateX(0); opacity: 1; }
+        }
+
+        /* Footer */
+        .footer {
+            background: var(--dark);
+            color: white;
+            padding: 60px 30px 30px;
+        }
+
+        .footer-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 2fr 1fr 1fr 1fr;
+            gap: 40px;
+            margin-bottom: 40px;
+        }
+
+        .footer-brand .logo-text {
+            font-size: 1.8rem;
+            -webkit-text-fill-color: white;
+            margin-bottom: 15px;
+            display: block;
+        }
+
+        .footer-brand p {
+            color: rgba(255,255,255,0.7);
+            font-size: 0.9rem;
+            line-height: 1.7;
+            margin-bottom: 20px;
+        }
+
+        .footer-social {
+            display: flex;
+            gap: 12px;
+        }
+
+        .footer-social a {
+            width: 40px;
+            height: 40px;
+            border-radius: 10px;
+            background: rgba(255,255,255,0.1);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+
+        .footer-social a:hover {
+            background: var(--primary);
+            transform: translateY(-3px);
+        }
+
+        .footer-col h4 {
+            font-size: 1rem;
+            font-weight: 700;
+            margin-bottom: 20px;
+            color: white;
+        }
+
+        .footer-col ul { list-style: none; }
+
+        .footer-col ul li { margin-bottom: 10px; }
+
+        .footer-col ul li a {
+            color: rgba(255,255,255,0.7);
+            text-decoration: none;
+            font-size: 0.9rem;
+            transition: color 0.3s;
+        }
+
+        .footer-col ul li a:hover { color: var(--primary); }
+
+        .footer-bottom {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding-top: 30px;
+            border-top: 1px solid rgba(255,255,255,0.1);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 15px;
+        }
+
+        .footer-bottom p {
+            color: rgba(255,255,255,0.5);
+            font-size: 0.85rem;
+        }
+
+        /* WhatsApp Float */
+        .whatsapp-float {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            z-index: 999;
+            width: 65px;
+            height: 65px;
+            background: #25D366;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 2rem;
+            box-shadow: 0 8px 25px rgba(37, 211, 102, 0.5);
+            text-decoration: none;
+            transition: all 0.3s ease;
+            animation: whatsappPulse 2s ease-in-out infinite;
+        }
+
+        .whatsapp-float:hover { transform: scale(1.1); }
+
+        @keyframes whatsappPulse {
+            0%, 100% { box-shadow: 0 8px 25px rgba(37, 211, 102, 0.5); }
+            50% { box-shadow: 0 8px 40px rgba(37, 211, 102, 0.8); }
+        }
+
+        /* Responsive */
+        @media (max-width: 968px) {
+            .hero-content h1 { font-size: 2.5rem; }
+            .stats-container { grid-template-columns: repeat(2, 1fr); }
+            .footer-container { grid-template-columns: 1fr 1fr; }
+            .lightbox-prev { left: 10px; }
+            .lightbox-next { right: 10px; }
+        }
+
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+                position: absolute;
+                top: 100%;
+                left: 0;
+                width: 100%;
+                background: white;
+                flex-direction: column;
+                padding: 20px;
+                box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            }
+
+            .nav-links.active { display: flex; }
+            .hamburger { display: block; }
+
+            .hero-content h1 { font-size: 2rem; }
+            .section-header h2 { font-size: 2rem; }
+            .gallery-grid { grid-template-columns: 1fr 1fr; }
+            .footer-container { grid-template-columns: 1fr; }
+            .footer-bottom { flex-direction: column; text-align: center; }
+            .lightbox-nav { width: 40px; height: 40px; }
+            .lightbox-prev { left: 5px; }
+            .lightbox-next { right: 5px; }
+        }
+
+        @media (max-width: 480px) {
+            .gallery-grid { grid-template-columns: 1fr; }
+        }
+    </style>
 </head>
 <body>
 
-<header>
-  <div class="nav-container">
-    <div class="logo">
-      <div class="logo-icon"><i class="fas fa-print"></i></div>
-      <div class="logo-text">Imprenta Central</div>
-    </div>
-    <nav>
-      <ul id="navMenu">
-        <li><a href="#inicio">Inicio</a></li>
-        <li><a href="#catalogo">Catálogo</a></li>
-        <li><a href="#contacto" class="nav-cta"><i class="fab fa-whatsapp"></i> Cotizar</a></li>
-      </ul>
+    <!-- Navbar -->
+    <nav class="navbar" id="navbar">
+        <div class="nav-container">
+            <div class="logo">
+                <div class="logo-icon">IC</div>
+                <span class="logo-text">Imprenta Central</span>
+            </div>
+            <ul class="nav-links" id="navLinks">
+                <li><a href="#inicio">Inicio</a></li>
+                <li><a href="#galeria">Galería</a></li>
+                <li><a href="#contacto">Contacto</a></li>
+                <li><a href="https://wa.me/56978472489" target="_blank" class="nav-cta">
+                    <i class="fab fa-whatsapp"></i> WhatsApp
+                </a></li>
+            </ul>
+            <div class="hamburger" id="hamburger">
+                <i class="fas fa-bars"></i>
+            </div>
+        </div>
     </nav>
-    <div class="menu-toggle" onclick="document.getElementById('navMenu').classList.toggle('active')">
-      <i class="fas fa-bars"></i>
-    </div>
-  </div>
-</header>
 
-<section class="hero" id="inicio">
-  <div class="hero-container">
-    <div class="hero-content">
-      <h1>Talonarios Médicos <span>de Calidad</span> en Puerto Montt</h1>
-      <p>Fabricamos talonarios de recetas, órdenes de exámenes y certificados médicos personalizados para profesionales de la salud. Impresión de alta calidad con entrega rápida.</p>
-      <div class="hero-badges">
-        <div class="badge"><i class="fas fa-check-circle"></i> Impresión Profesional</div>
-        <div class="badge"><i class="fas fa-check-circle"></i> Diseño Personalizado</div>
-        <div class="badge"><i class="fas fa-check-circle"></i> Entrega Rápida</div>
-      </div>
-      <div class="hero-buttons">
-        <a href="https://wa.me/56978472489" class="btn btn-primary"><i class="fab fa-whatsapp"></i> Cotizar por WhatsApp</a>
-        <a href="#catalogo" class="btn btn-secondary">Ver Catálogo</a>
-      </div>
-    </div>
-  </div>
-</section>
-
-<section class="catalog-section" id="catalogo">
-  <div class="catalog-container">
-    <div class="section-header">
-      <div class="section-tag">Catálogo Completo</div>
-      <h2>64 Modelos de Plantillas</h2>
-      <p>Selecciona el diseño que más te guste y solicítalo directamente por WhatsApp. Todos los modelos son personalizables con tus datos.</p>
-    </div>
-
-    <div class="catalog-stats">
-      <div class="stat-card">
-        <div class="stat-number">64</div>
-        <div class="stat-label">Modelos Disponibles</div>
-      </div>
-      <div class="stat-card">
-        <div class="stat-number">100%</div>
-        <div class="stat-label">Personalizable</div>
-      </div>
-      <div class="stat-card">
-        <div class="stat-number">24h</div>
-        <div class="stat-label">Entrega Rápida</div>
-      </div>
-      <div class="stat-card">
-        <div class="stat-number">+500</div>
-        <div class="stat-label">Clientes Felices</div>
-      </div>
-    </div>
-
-    <div class="catalog-filters">
-      <button class="filter-btn active" data-filter="all">Todos (64)</button>
-      <button class="filter-btn" data-filter="receta">Recetas</button>
-      <button class="filter-btn" data-filter="examen">Exámenes</button>
-      <button class="filter-btn" data-filter="certificado">Certificados</button>
-    </div>
-
-    <div class="catalog-grid" id="catalogGrid"></div>
-
-    <div class="load-more-container">
-      <button class="btn-load-more" id="loadMoreBtn">
-        <i class="fas fa-plus"></i> Cargar Más Plantillas
-      </button>
-    </div>
-  </div>
-</section>
-
-<section class="contact" id="contacto">
-  <div class="contact-container">
-    <div class="contact-info">
-      <div class="section-tag">Contáctanos</div>
-      <h2>¿Listo para <span>ordenar</span> tus talonarios?</h2>
-      <p>Contáctanos por WhatsApp y te responderemos a la brevedad con tu cotización personalizada.</p>
-      <ul class="contact-list">
-        <li>
-          <i class="fas fa-location-dot"></i>
-          <div>
-            <strong>Dirección</strong>
-            <span>Urmeneta 300 Local 15, Puerto Montt</span>
-          </div>
-        </li>
-        <li>
-          <i class="fab fa-whatsapp"></i>
-          <div>
-            <strong>WhatsApp</strong>
-            <span>+56 9 7847 2489</span>
-          </div>
-        </li>
-        <li>
-          <i class="fas fa-clock"></i>
-          <div>
-            <strong>Horario</strong>
-            <span>Lunes a Viernes: 9:00 - 18:30 | Sábado: 10:00 - 14:00</span>
-          </div>
-        </li>
-      </ul>
-      <a href="https://wa.me/56978472489" class="btn btn-primary"><i class="fab fa-whatsapp"></i> Escríbenos por WhatsApp</a>
-    </div>
-  </div>
-</section>
-
-<footer>
-  <div class="footer-bottom">
-    <p>© 2026 Imprenta Central - Urmeneta 300 Local 15, Puerto Montt | WhatsApp: +56 9 7847 2489</p>
-  </div>
-</footer>
-
-<a href="https://wa.me/56978472489" class="whatsapp-float" title="Chatea con nosotros">
-  <i class="fab fa-whatsapp"></i>
-</a>
-
-<div class="modal" id="imageModal">
-  <button class="modal-close" onclick="closeModal()">×</button>
-  <img id="modalImage" src="" alt="Vista ampliada">
-</div>
-
-<script>
-  // URL base del repositorio de GitHub con el commit específico
-  const GITHUB_BASE = 'https://raw.githubusercontent.com/jamac2006/recetas/6d783b43a205d069bb4d97c0bdc6a0e4dbab58dd/imagen';
-  
-  // Generar las 64 URLs de imágenes
-  const imagenesCatalogo = [];
-  for (let i = 1; i <= 64; i++) {
-    imagenesCatalogo.push(`${GITHUB_BASE}/imagen${i}.png`);
-  }
-
-  // Datos de profesionales del PDF
-  const profesionales = [
-    { 
-      nombre: 'Marcela Andrade', 
-      titulo: 'MATRONA', 
-      registro: '1234567', 
-      rut: '20.123.456-7', 
-      telefono: '(55) 1234-5678', 
-      direccion: 'Calle Cualquiera 123, Cualquier Lugar'
-    },
-    { 
-      nombre: 'Javiera García', 
-      titulo: 'Matrona', 
-      registro: '123456', 
-      rut: '20.123.456-7', 
-      telefono: '(55) 1234-5678', 
-      direccion: 'Piso 3 | Consultorio 10 | Calle Cualquiera 123'
-    }
-  ];
-
-  // Generar 64 plantillas
-  const categorias = ['receta', 'receta', 'examen', 'certificado'];
-  const plantillas = [];
-  
-  for (let i = 1; i <= 64; i++) {
-    const profIndex = (i - 1) % 2;
-    const categoria = categorias[(i - 1) % 4];
-    const prof = profesionales[profIndex];
-    
-    plantillas.push({
-      id: i,
-      numero: i,
-      nombre: `Modelo ${String(i).padStart(2, '0')}`,
-      categoria: categoria,
-      categoriaNombre: categoria === 'receta' ? 'Receta Médica' : categoria === 'examen' ? 'Orden de Exámenes' : 'Certificado Médico',
-      profesional: prof.nombre,
-      titulo: prof.titulo,
-      registro: prof.registro,
-      rut: prof.rut,
-      telefono: prof.telefono,
-      direccion: prof.direccion,
-      imagen: imagenesCatalogo[i - 1],
-      destacado: i <= 8
-    });
-  }
-
-  let plantillasVisibles = 12;
-  let filtroActual = 'all';
-
-  // Función para generar placeholder SVG cuando la imagen no carga
-  function generarPlaceholder(p) {
-    return `
-      <div class="catalog-placeholder">
-        <div class="placeholder-number">${String(p.numero).padStart(2, '0')}</div>
-        <div class="placeholder-title">${p.categoriaNombre}</div>
-        <div class="placeholder-prof">${p.profesional}</div>
-        <div class="placeholder-info">
-          ${p.titulo}<br>
-          Registro: ${p.registro}<br>
-          RUT: ${p.rut}
+    <!-- Hero -->
+    <section class="hero" id="inicio">
+        <div class="hero-bg-shapes">
+            <div class="shape shape-1"></div>
+            <div class="shape shape-2"></div>
+            <div class="shape shape-3"></div>
         </div>
-      </div>
-    `;
-  }
-
-  function renderizarCatalogo() {
-    const grid = document.getElementById('catalogGrid');
-    const plantillasFiltradas = filtroActual === 'all' 
-      ? plantillas 
-      : plantillas.filter(p => p.categoria === filtroActual);
-    
-    const plantillasMostrar = plantillasFiltradas.slice(0, plantillasVisibles);
-    
-    grid.innerHTML = plantillasMostrar.map(p => `
-      <div class="catalog-card" data-categoria="${p.categoria}">
-        <div class="catalog-image-container">
-          ${generarPlaceholder(p)}
-          <img src="${p.imagen}" 
-               alt="${p.nombre}" 
-               class="catalog-image" 
-               onclick="verPlantilla(${p.id})"
-               onerror="this.style.display='none'"
-               onload="this.previousElementSibling.style.display='none'">
-          <div class="catalog-number">${p.numero}</div>
-          ${p.destacado ? '<div class="catalog-badge">⭐ Destacado</div>' : ''}
+        <div class="hero-container">
+            <div class="hero-content">
+                <div class="hero-badges">
+                    <span class="badge badge-1"><i class="fas fa-star"></i> Calidad Premium</span>
+                    <span class="badge badge-2"><i class="fas fa-camera"></i> Galería Interactiva</span>
+                    <span class="badge badge-3"><i class="fas fa-bolt"></i> Entrega Rápida</span>
+                </div>
+                <h1>Galería de <span class="highlight">Talonarios Médicos</span></h1>
+                <p>Explora nuestra colección de diseños profesionales para matronas, médicos y profesionales de la salud. Sube tus propios diseños y personaliza tu talonario ideal.</p>
+                <div class="hero-buttons">
+                    <a href="#galeria" class="btn-primary">
+                        <i class="fas fa-images"></i> Ver Galería
+                    </a>
+                    <a href="https://wa.me/56978472489" target="_blank" class="btn-secondary">
+                        <i class="fab fa-whatsapp"></i> Consultar
+                    </a>
+                </div>
+            </div>
         </div>
-        <div class="catalog-info">
-          <h3>${p.nombre}</h3>
-          <div class="professional">${p.profesional} - ${p.titulo}</div>
-          <ul class="catalog-details">
-            <li><i class="fas fa-id-card"></i> Registro: ${p.registro}</li>
-            <li><i class="fas fa-barcode"></i> RUT: ${p.rut}</li>
-            <li><i class="fas fa-phone"></i> ${p.telefono}</li>
-            <li><i class="fas fa-location-dot"></i> ${p.direccion}</li>
-          </ul>
-          <div class="catalog-actions">
-            <a href="https://wa.me/56978472489?text=${encodeURIComponent(`Hola Imprenta Central! Quiero solicitar el ${p.nombre} para ${p.profesional} (${p.titulo}). ¿Me pueden cotizar?`)}" 
-               class="btn-whatsapp" target="_blank">
-              <i class="fab fa-whatsapp"></i> Solicitar
-            </a>
-            <button class="btn-view" onclick="verPlantilla(${p.id})">
-              <i class="fas fa-eye"></i>
+    </section>
+
+    <!-- Stats -->
+    <section class="stats">
+        <div class="stats-container">
+            <div class="stat-item">
+                <div class="stat-number" id="statImages">5</div>
+                <div class="stat-label">Modelos Disponibles</div>
+            </div>
+            <div class="stat-item">
+                <div class="stat-number">500+</div>
+                <div class="stat-label">Clientes Felices</div>
+            </div>
+            <div class="stat-item">
+                <div class="stat-number">24h</div>
+                <div class="stat-label">Entrega Rápida</div>
+            </div>
+            <div class="stat-item">
+                <div class="stat-number">$9.990</div>
+                <div class="stat-label">Precio por Talonario</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Gallery Section -->
+    <section class="gallery-section" id="galeria">
+        <div class="section-header">
+            <span class="section-tag">Colección Completa</span>
+            <h2>Galería de Modelos</h2>
+            <p>Explora nuestros diseños disponibles o sube tus propias imágenes para crear un catálogo personalizado.</p>
+        </div>
+
+        <!-- Upload Area -->
+        <div class="upload-section">
+            <div class="upload-area" id="uploadArea">
+                <div class="upload-icon">
+                    <i class="fas fa-cloud-upload-alt"></i>
+                </div>
+                <h3>Sube tus imágenes aquí</h3>
+                <p>Arrastra y suelta tus archivos o haz clic para seleccionar</p>
+                <button class="btn-upload" onclick="document.getElementById('fileInput').click()">
+                    <i class="fas fa-folder-open"></i> Seleccionar Archivos
+                </button>
+                <p class="upload-hint">Formatos: JPG, PNG, WEBP • Máximo 5MB por imagen</p>
+                <input type="file" id="fileInput" accept="image/*" multiple>
+            </div>
+        </div>
+
+        <!-- Filters -->
+        <div class="filters-container">
+            <button class="filter-btn active" data-filter="all">
+                <i class="fas fa-th"></i> Todos
             </button>
-          </div>
+            <button class="filter-btn" data-filter="matrona">
+                <i class="fas fa-female"></i> Matrona
+            </button>
+            <button class="filter-btn" data-filter="medico">
+                <i class="fas fa-user-md"></i> Médico
+            </button>
+            <button class="filter-btn" data-filter="pediatria">
+                <i class="fas fa-baby"></i> Pediatría
+            </button>
+            <button class="filter-btn" data-filter="personalizado">
+                <i class="fas fa-palette"></i> Personalizado
+            </button>
+            <button class="filter-btn" data-filter="subido">
+                <i class="fas fa-upload"></i> Subidos por mí
+            </button>
         </div>
-      </div>
-    `).join('');
 
-    const loadMoreBtn = document.getElementById('loadMoreBtn');
-    if (plantillasVisibles >= plantillasFiltradas.length) {
-      loadMoreBtn.style.display = 'none';
-    } else {
-      loadMoreBtn.style.display = 'inline-block';
-    }
-  }
+        <!-- Gallery Grid -->
+        <div class="gallery-container">
+            <div class="gallery-grid" id="galleryGrid">
+                <!-- Items injected by JS -->
+            </div>
+        </div>
+    </section>
 
-  document.querySelectorAll('.filter-btn').forEach(btn => {
-    btn.addEventListener('click', function() {
-      document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
-      this.classList.add('active');
-      filtroActual = this.dataset.filter;
-      plantillasVisibles = 12;
-      renderizarCatalogo();
-    });
-  });
+    <!-- Footer -->
+    <footer class="footer" id="contacto">
+        <div class="footer-container">
+            <div class="footer-brand">
+                <span class="logo-text" style="font-family: 'Playfair Display', serif;">Imprenta Central</span>
+                <p>Tu imprenta de confianza en Puerto Montt. Especialistas en talonarios médicos y material gráfico profesional para el área de la salud.</p>
+                <div class="footer-social">
+                    <a href="#"><i class="fab fa-facebook-f"></i></a>
+                    <a href="#"><i class="fab fa-instagram"></i></a>
+                    <a href="https://wa.me/56978472489" target="_blank"><i class="fab fa-whatsapp"></i></a>
+                </div>
+            </div>
+            <div class="footer-col">
+                <h4>Productos</h4>
+                <ul>
+                    <li><a href="#galeria">Talonarios Médicos</a></li>
+                    <li><a href="#galeria">Diseño Personalizado</a></li>
+                    <li><a href="#galeria">Recetarios</a></li>
+                    <li><a href="#galeria">Certificados</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h4>Empresa</h4>
+                <ul>
+                    <li><a href="#inicio">Inicio</a></li>
+                    <li><a href="#galeria">Galería</a></li>
+                    <li><a href="#contacto">Contacto</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h4>Contacto</h4>
+                <ul>
+                    <li><a href="#"><i class="fas fa-map-marker-alt"></i> Urmeneta 300 L15</a></li>
+                    <li><a href="https://wa.me/56978472489"><i class="fab fa-whatsapp"></i> +56 9 7847 2489</a></li>
+                    <li><a href="#"><i class="fas fa-envelope"></i> contacto@imprentacentral.cl</a></li>
+                    <li><a href="#"><i class="fas fa-clock"></i> Lun-Vie 9:00-18:30</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>© 2026 Imprenta Central. Todos los derechos reservados.</p>
+            <p>Puerto Montt, Chile 🇨🇱</p>
+        </div>
+    </footer>
 
-  document.getElementById('loadMoreBtn').addEventListener('click', function() {
-    plantillasVisibles += 12;
-    renderizarCatalogo();
-  });
+    <!-- WhatsApp Float -->
+    <a href="https://wa.me/56978472489?text=Hola!%20Me%20interesa%20comprar%20talonarios%20médicos" target="_blank" class="whatsapp-float">
+        <i class="fab fa-whatsapp"></i>
+    </a>
 
-  function verPlantilla(id) {
-    const plantilla = plantillas.find(p => p.id === id);
-    if (plantilla) {
-      document.getElementById('modalImage').src = plantilla.imagen;
-      document.getElementById('imageModal').classList.add('active');
-    }
-  }
+    <!-- Lightbox -->
+    <div class="lightbox" id="lightbox">
+        <div class="lightbox-content">
+            <button class="lightbox-close" onclick="closeLightbox()">
+                <i class="fas fa-times"></i>
+            </button>
+            <button class="lightbox-nav lightbox-prev" onclick="navigateLightbox(-1)">
+                <i class="fas fa-chevron-left"></i>
+            </button>
+            <img src="" alt="" class="lightbox-img" id="lightboxImg">
+            <button class="lightbox-nav lightbox-next" onclick="navigateLightbox(1)">
+                <i class="fas fa-chevron-right"></i>
+            </button>
+            <div class="lightbox-info">
+                <h3 id="lightboxTitle"></h3>
+                <p id="lightboxCategory"></p>
+            </div>
+        </div>
+    </div>
 
-  function closeModal() {
-    document.getElementById('imageModal').classList.remove('active');
-  }
+    <!-- Upload Modal -->
+    <div class="modal-overlay" id="uploadModal">
+        <div class="modal">
+            <button class="modal-close" onclick="closeUploadModal()">&times;</button>
+            <h3><i class="fas fa-cloud-upload-alt" style="color: var(--primary);"></i> Subir Nueva Imagen</h3>
+            <p>Completa los datos para agregar tu imagen a la galería.</p>
 
-  document.getElementById('imageModal').addEventListener('click', function(e) {
-    if (e.target === this) closeModal();
-  });
+            <div class="preview-container" id="previewContainer">
+                <img src="" alt="Preview" class="preview-img" id="previewImg">
+            </div>
 
-  document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-    anchor.addEventListener('click', function (e) {
-      e.preventDefault();
-      const target = document.querySelector(this.getAttribute('href'));
-      if (target) {
-        target.scrollIntoView({ behavior: 'smooth', block: 'start' });
-        document.getElementById('navMenu').classList.remove('active');
-      }
-    });
-  });
+            <form id="uploadForm" onsubmit="handleUpload(event)">
+                <div class="form-group">
+                    <label>Título del Diseño *</label>
+                    <input type="text" id="imgTitle" placeholder="Ej: Talonario Matrona Púrpura" required>
+                </div>
+                <div class="form-group">
+                    <label>Categoría *</label>
+                    <select id="imgCategory" required>
+                        <option value="">Selecciona una categoría</option>
+                        <option value="matrona">Matrona</option>
+                        <option value="medico">Médico</option>
+                        <option value="pediatria">Pediatría</option>
+                        <option value="personalizado">Personalizado</option>
+                        <option value="otro">Otro</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label>Etiqueta (opcional)</label>
+                    <select id="imgBadge">
+                        <option value="">Sin etiqueta</option>
+                        <option value="new">Nuevo</option>
+                        <option value="popular">Popular</option>
+                        <option value="custom">Personalizado</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label>Descripción</label>
+                    <textarea id="imgDescription" placeholder="Describe brevemente el diseño..."></textarea>
+                </div>
+                <button type="submit" class="btn-submit">
+                    <i class="fas fa-plus-circle"></i> Agregar a la Galería
+                </button>
+            </form>
+        </div>
+    </div>
 
-  renderizarCatalogo();
-</script>
+    <!-- Toast Container -->
+    <div class="toast-container" id="toastContainer"></div>
 
+    <script>
+        // Default gallery items
+        const defaultImages = [
+            {
+                id: 1,
+                title: "Diseño Púrpura Matrona",
+                category: "matrona",
+                badge: "popular",
+                description: "Elegante diseño con ícono de útero en tonos púrpura. Ideal para matronas y ginecólogas.",
+                price: 9990,
+                src: "https://image.qwenlm.ai/public_source/89d5b7d9-1ca4-42d5-9da2-139c7a76ad4a/16b727ca1-366f-4455-aa9c-68d20a0a1e90.png",
+                userUploaded: false
+            },
+            {
+                id: 2,
+                title: "Diseño Lavanda Maternidad",
+                category: "matrona",
+                badge: "new",
+                description: "Hermoso diseño con silueta de mujer embarazada en tonos lavanda. Perfecto para control prenatal.",
+                price: 9990,
+                src: "https://image.qwenlm.ai/public_source/89d5b7d9-1ca4-42d5-9da2-139c7a76ad4a/1f881d3d2-dd6c-4830-a7de-eca8e3cff9e3.png",
+                userUploaded: false
+            },
+            {
+                id: 3,
+                title: "Diseño Azul Caduceo",
+                category: "medico",
+                badge: "popular",
+                description: "Diseño profesional con caduceo médico en azul corporativo. Ideal para todo profesional de la salud.",
+                price: 9990,
+                src: "https://image.qwenlm.ai/public_source/89d5b7d9-1ca4-42d5-9da2-139c7a76ad4a/1fa220118-b974-4512-a6aa-ba6ad82070ef.png",
+                userUploaded: false
+            },
+            {
+                id: 4,
+                title: "Diseño Corazón Bebé",
+                category: "pediatria",
+                badge: "popular",
+                description: "Tierno diseño en blanco y negro con corazón y bebé. Perfecto para pediatras y matronas.",
+                price: 9990,
+                src: "https://image.qwenlm.ai/public_source/89d5b7d9-1ca4-42d5-9da2-139c7a76ad4a/15886395c-0302-4a80-968c-2db4252d3f26.png",
+                userUploaded: false
+            },
+            {
+                id: 5,
+                title: "Diseño Celeste Bebé",
+                category: "pediatria",
+                badge: "new",
+                description: "Delicado diseño con bebé en tonos celestes. Ideal para neonatología y control infantil.",
+                price: 9990,
+                src: "https://image.qwenlm.ai/public_source/89d5b7d9-1ca4-42d5-9da2-139c7a76ad4a/163a1c77e-0ddc-4d82-a360-2606adaabf36.png",
+                userUploaded: false
+            }
+        ];
+
+        // State
+        let galleryImages = [];
+        let currentFilter = 'all';
+        let currentLightboxIndex = 0;
+        let currentFilteredImages = [];
+        let pendingUpload = null;
+
+        // Load from localStorage or use defaults
+        function loadGallery() {
+            const stored = localStorage.getItem('galleryImages');
+            if (stored) {
+                galleryImages = JSON.parse(stored);
+            } else {
+                galleryImages = [...defaultImages];
+                saveGallery();
+            }
+        }
+
+        function saveGallery() {
+            localStorage.setItem('galleryImages', JSON.stringify(galleryImages));
+        }
+
+        // Category labels
+        const categoryLabels = {
+            matrona: 'Matrona',
+            medico: 'Médico',
+            pediatria: 'Pediatría',
+            personalizado: 'Personalizado',
+            otro: 'Otro'
+        };
+
+        const badgeLabels = {
+            new: 'Nuevo',
+            popular: 'Popular',
+            custom: 'Personalizado'
+        };
+
+        // Render gallery
+        function renderGallery() {
+            const grid = document.getElementById('galleryGrid');
+            const filtered = currentFilter === 'all' 
+                ? galleryImages 
+                : currentFilter === 'subido'
+                    ? galleryImages.filter(img => img.userUploaded)
+                    : galleryImages.filter(img => img.category === currentFilter);
+
+            currentFilteredImages = filtered;
+
+            if (filtered.length === 0) {
+                grid.innerHTML = `
+                    <div class="empty-state">
+                        <i class="fas fa-image"></i>
+                        <h3>No hay imágenes en esta categoría</h3>
+                        <p>Sube tu primera imagen o cambia el filtro</p>
+                    </div>
+                `;
+                return;
+            }
+
+            grid.innerHTML = filtered.map((img, idx) => `
+                <div class="gallery-item" data-id="${img.id}">
+                    ${img.badge ? `<span class="gallery-item-badge badge-${img.badge}">${badgeLabels[img.badge]}</span>` : ''}
+                    <div class="gallery-item-img-wrapper" onclick="openLightbox(${idx})">
+                        <img src="${img.src}" alt="${img.title}" class="gallery-item-img" loading="lazy">
+                        <div class="gallery-overlay">
+                            <div class="overlay-actions">
+                                <button class="overlay-btn btn-view" onclick="event.stopPropagation(); openLightbox(${idx})">
+                                    <i class="fas fa-expand"></i> Ver
+                                </button>
+                                ${img.userUploaded ? `
+                                    <button class="overlay-btn btn-delete" onclick="event.stopPropagation(); deleteImage(${img.id})" title="Eliminar">
+                                        <i class="fas fa-trash"></i>
+                                    </button>
+                                ` : ''}
+                            </div>
+                        </div>
+                    </div>
+                    <div class="gallery-item-info">
+                        <span class="gallery-item-category cat-${img.category}">
+                            <i class="fas fa-tag"></i> ${categoryLabels[img.category]}
+                        </span>
+                        <h3 class="gallery-item-title">${img.title}</h3>
+                        <div class="gallery-item-price">
+                            $${img.price.toLocaleString('es-CL')}
+                            <small>CLP / unidad</small>
+                        </div>
+                    </div>
+                </div>
+            `).join('');
+
+            // Update counter
+            document.getElementById('statImages').textContent = galleryImages.length;
+        }
+
+        // Filter buttons
+        document.querySelectorAll('.filter-btn').forEach(btn => {
+            btn.addEventListener('click', () => {
+                document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+                btn.classList.add('active');
+                currentFilter = btn.dataset.filter;
+                renderGallery();
+            });
+        });
+
+        // Upload area drag & drop
+        const uploadArea = document.getElementById('uploadArea');
+        const fileInput = document.getElementById('fileInput');
+
+        uploadArea.addEventListener('dragover', (e) => {
+            e.preventDefault();
+            uploadArea.classList.add('dragover');
+        });
+
+        uploadArea.addEventListener('dragleave', () => {
+            uploadArea.classList.remove('dragover');
+        });
+
+        uploadArea.addEventListener('drop', (e) => {
+            e.preventDefault();
+            uploadArea.classList.remove('dragover');
+            const files = Array.from(e.dataTransfer.files).filter(f => f.type.startsWith('image/'));
+            if (files.length > 0) {
+                handleFiles(files);
+            }
+        });
+
+        uploadArea.addEventListener('click', (e) => {
+            if (e.target.tagName !== 'BUTTON') {
+                fileInput.click();
+            }
+        });
+
+        fileInput.addEventListener('change', (e) => {
+            const files = Array.from(e.target.files);
+            if (files.length > 0) {
+                handleFiles(files);
+            }
+            fileInput.value = '';
+        });
+
+        function handleFiles(files) {
+            files.forEach(file => {
+                if (file.size > 5 * 1024 * 1024) {
+                    showToast('Archivo muy grande', `${file.name} excede 5MB`, true);
+                    return;
+                }
+
+                const reader = new FileReader();
+                reader.onload = (e) => {
+                    pendingUpload = {
+                        src: e.target.result,
+                        fileName: file.name
+                    };
+                    document.getElementById('previewImg').src = e.target.result;
+                    document.getElementById('previewContainer').classList.add('active');
+                    document.getElementById('uploadModal').classList.add('active');
+                };
+                reader.readAsDataURL(file);
+            });
+        }
+
+        function handleUpload(e) {
+            e.preventDefault();
+            if (!pendingUpload) return;
+
+            const title = document.getElementById('imgTitle').value.trim();
+            const category = document.getElementById('imgCategory').value;
+            const badge = document.getElementById('imgBadge').value;
+            const description = document.getElementById('imgDescription').value.trim();
+
+            const newImage = {
+                id: Date.now(),
+                title: title,
+                category: category,
+                badge: badge || null,
+                description: description,
+                price: 9990,
+                src: pendingUpload.src,
+                userUploaded: true
+            };
+
+            galleryImages.unshift(newImage);
+            saveGallery();
+            renderGallery();
+            closeUploadModal();
+            showToast('¡Imagen agregada!', `"${title}" se agregó a la galería`);
+
+            // Reset form
+            document.getElementById('uploadForm').reset();
+            document.getElementById('previewContainer').classList.remove('active');
+            pendingUpload = null;
+        }
+
+        function deleteImage(id) {
+            if (!confirm('¿Estás seguro de eliminar esta imagen de la galería?')) return;
+
+            galleryImages = galleryImages.filter(img => img.id !== id);
+            saveGallery();
+            renderGallery();
+            showToast('Imagen eliminada', 'La imagen fue removida de la galería');
+        }
+
+        function closeUploadModal() {
+            document.getElementById('uploadModal').classList.remove('active');
+            document.getElementById('previewContainer').classList.remove('active');
+            pendingUpload = null;
+        }
+
+        // Lightbox
+        function openLightbox(index) {
+            currentLightboxIndex = index;
+            const img = currentFilteredImages[index];
+            document.getElementById('lightboxImg').src = img.src;
+            document.getElementById('lightboxTitle').textContent = img.title;
+            document.getElementById('lightboxCategory').textContent = `${categoryLabels[img.category]} • $${img.price.toLocaleString('es-CL')}`;
+            document.getElementById('lightbox').classList.add('active');
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeLightbox() {
+            document.getElementById('lightbox').classList.remove('active');
+            document.body.style.overflow = '';
+        }
+
+        function navigateLightbox(direction) {
+            currentLightboxIndex = (currentLightboxIndex + direction + currentFilteredImages.length) % currentFilteredImages.length;
+            const img = currentFilteredImages[currentLightboxIndex];
+            document.getElementById('lightboxImg').src = img.src;
+            document.getElementById('lightboxTitle').textContent = img.title;
+            document.getElementById('lightboxCategory').textContent = `${categoryLabels[img.category]} • $${img.price.toLocaleString('es-CL')}`;
+        }
+
+        // Close lightbox on background click
+        document.getElementById('lightbox').addEventListener('click', (e) => {
+            if (e.target.id === 'lightbox') closeLightbox();
+        });
+
+        // Keyboard navigation
+        document.addEventListener('keydown', (e) => {
+            if (document.getElementById('lightbox').classList.contains('active')) {
+                if (e.key === 'Escape') closeLightbox();
+                if (e.key === 'ArrowLeft') navigateLightbox(-1);
+                if (e.key === 'ArrowRight') navigateLightbox(1);
+            }
+            if (document.getElementById('uploadModal').classList.contains('active')) {
+                if (e.key === 'Escape') closeUploadModal();
+            }
+        });
+
+        // Toast notifications
+        function showToast(title, message, isError = false) {
+            const container = document.getElementById('toastContainer');
+            const toast = document.createElement('div');
+            toast.className = `toast ${isError ? 'error' : ''}`;
+            toast.innerHTML = `
+                <i class="fas ${isError ? 'fa-exclamation-circle' : 'fa-check-circle'}"></i>
+                <div class="toast-content">
+                    <h4>${title}</h4>
+                    <p>${message}</p>
+                </div>
+            `;
+            container.appendChild(toast);
+            setTimeout(() => {
+                toast.style.opacity = '0';
+                toast.style.transform = 'translateX(100%)';
+                setTimeout(() => toast.remove(), 300);
+            }, 3500);
+        }
+
+        // Navbar scroll
+        window.addEventListener('scroll', () => {
+            const navbar = document.getElementById('navbar');
+            if (window.scrollY > 50) {
+                navbar.classList.add('scrolled');
+            } else {
+                navbar.classList.remove('scrolled');
+            }
+        });
+
+        // Hamburger
+        const hamburger = document.getElementById('hamburger');
+        const navLinks = document.getElementById('navLinks');
+
+        hamburger.addEventListener('click', () => {
+            navLinks.classList.toggle('active');
+        });
+
+        document.querySelectorAll('.nav-links a').forEach(link => {
+            link.addEventListener('click', () => {
+                navLinks.classList.remove('active');
+            });
+        });
+
+        // Smooth scroll
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                }
+            });
+        });
+
+        // Close modal on overlay click
+        document.getElementById('uploadModal').addEventListener('click', (e) => {
+            if (e.target.id === 'uploadModal') closeUploadModal();
+        });
+
+        // Initialize
+        loadGallery();
+        renderGallery();
+    </script>
 </body>
 </html>
-
